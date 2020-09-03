@@ -30,6 +30,13 @@ app.use(function(req, res, next) {
 let rutasAgregarPost = require("./routes/agregarPost");
 app.use("./agregarPost",rutasAgregarPost);
 
+let rutasHeaderDeslogueado = require("./routes/headerDeslogueado");
+app.use("./headerDeslogueado",rutasHeaderDeslogueado);
+
+let rutasHeaderLogueado = require("./routes/headerLogueado");
+app.use("./headerLogueado",rutasHeaderLogueado);
+
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
