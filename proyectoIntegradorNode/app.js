@@ -27,6 +27,9 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+let rutasAgregarPost = require("./routes/agregarPost");
+app.use("./agregarPost",rutasAgregarPost);
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
