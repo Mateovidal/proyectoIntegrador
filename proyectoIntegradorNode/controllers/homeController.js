@@ -48,4 +48,4 @@ anio:  function (req,res){
 
 
 };
-module.exports = headerDeslogueadoController;
+module.exports = homeController;
