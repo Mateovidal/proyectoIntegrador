@@ -1,6 +1,10 @@
 var post = require("../posts/post.js")
 var agregarPostController = { 
-detalle: function (post,res){ 
+agregar: function (post,res){ 
+
+
+res.render ()
+
 
 }
 // index:function (req,res){
