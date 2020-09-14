@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var headerDeslogueado = require("../posts/post.js")
 var headerDeslogueadoController = { 
 
@@ -49,3 +50,5 @@ var headerDeslogueadoController = {
 
 };
 module.exports = headerDeslogueadoController;
+=======
+>>>>>>> 2a1380d73f57eb7e3fd2a9940da0269cdabbc7e8
