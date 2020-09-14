@@ -1,12 +1,26 @@
-var post = require("../posts/post.js")
-var agregarPostController = { 
-agregar: function (post,res){ 
+// var post = require("../posts/post.js")
+// var agregarPostController = { 
+// agregar: function (post,res){ 
 
+// res.render ()
 
-res.render ()
+// };
+
+let agregarPostController = {
+    agregar: function (req,res) {
+        res.render("agregarPost")
+    },
+    detalle: function (req,res) {
+        res.render("detallePost")
+        
+    }
+    
 
 
 }
+
+module.exports = agregarPostController;
+
 // index:function (req,res){
 //     // aca escribo que pasa cuando el usuario quiere agregar un post
 //         res.send (post.lista)
@@ -49,9 +63,3 @@ res.render ()
 //     }
 //     }
 
-
-
-
-
-};
-module.exports = agregarPostController;
