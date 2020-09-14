@@ -22,19 +22,31 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+// let rutaPrueba = require('./routes/prueba')
+// app.use('/prueba', rutaPrueba)
+
+let rutaAgregarPost = require('./routes/agregarPost')
+app.use('/agregarPost', rutaAgregarPost)
+
+// let rutasAgregarPost = require("./routes/agregarPost");
+// app.use("/agregarPost",rutasAgregarPost);
+
+let rutasHome = require("./routes/home");
+app.use("/home",rutasHome);
+
+
+// let rutasHeaderDeslogueado = require("./routes/headerDeslogueado");
+// app.use("./headerDeslogueado",rutasHeaderDeslogueado);
+
+// let rutasHeaderLogueado = require("./routes/headerLogueado");
+// app.use("./headerLogueado",rutasHeaderLogueado);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-let rutasAgregarPost = require("./routes/agregarPost");
-app.use("./agregarPost",rutasAgregarPost);
-
-let rutasHeaderDeslogueado = require("./routes/headerDeslogueado");
-app.use("./headerDeslogueado",rutasHeaderDeslogueado);
-
-let rutasHeaderLogueado = require("./routes/headerLogueado");
-app.use("./headerLogueado",rutasHeaderLogueado);
 
 
 // error handler

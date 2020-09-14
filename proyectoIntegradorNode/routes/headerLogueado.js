@@ -1,5 +1,6 @@
-var express = require ('../views/headerLogueado.ejs');
+var express = require('express');
 var router = express.Router();
+
 
 router.get("/loguear" , function(req,res) {
 

@@ -1,5 +1,6 @@
-var express = require ('../views/headerDeslogueado.ejs');
+var express = require('express');
 var router = express.Router();
+
 
 router.get("/desloguear" , function(req,res) {
 

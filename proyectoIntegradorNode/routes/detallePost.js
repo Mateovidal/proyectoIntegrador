@@ -1,5 +1,6 @@
-var express = require ('../views/detallePost.ejs');
+var express = require('express');
 var router = express.Router();
+
 
 router.get("/detallePost" , function(req,res) {
 

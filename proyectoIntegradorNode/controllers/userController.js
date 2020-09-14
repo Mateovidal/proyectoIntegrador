@@ -20,13 +20,13 @@ let userController = {
 
     login: function(req, res) {
         
-        res.render("login.ejs")
+        res.render("login")
 
     },
 
     home: function(req, res) {
         
-        res.render("home.ejs")
+        res.render("home")
 
     },
 }

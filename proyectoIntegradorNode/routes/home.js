@@ -1,11 +1,14 @@
-var express = require ('../views/home.ejs');
+var express = require('express');
 var router = express.Router();
 
-router.get("/home" , function(req,res) {
+var userController = require("../controllers/userController.js")
+// EL PREFIJO PARA ESTA PAGINA ES "/HOME"
 
 
-res.send ("Home");
+// localhost:3000/home/
+router.get("/" , userController.home);
 
-});
+
+//localhost:3000/home/login
 
 module.exports = router;

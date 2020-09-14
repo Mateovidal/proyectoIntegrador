@@ -1,11 +1,11 @@
-var express = require ('../views/agregarPost.ejs');
+var express = require('express');
 var router = express.Router();
 
-router.get("/agregarPost" , function(req,res) {
+
+var agregarPostController = require("../controllers/agregarPostController.js")
+// EL PREFIJO PARA ESTA PAGINA ES "/AGREGARPOST"
 
 
-res.send ("Agregar post");
-
-});
-
+// localhost:3000/home/
+router.get("/" , agregarPostController.agregarPost);
 module.exports = router;

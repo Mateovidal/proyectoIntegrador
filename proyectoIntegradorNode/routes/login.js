@@ -1,5 +1,6 @@
-var express = require ('../views/login.ejs');
+var express = require('express');
 var router = express.Router();
+
 
 router.get("/loginl" , function(req,res) {
 

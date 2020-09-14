@@ -1,5 +1,6 @@
-var express = require ('../views/registracion.ejs');
+var express = require('express');
 var router = express.Router();
+
 
 router.get("/registracion" , function(req,res) {
 

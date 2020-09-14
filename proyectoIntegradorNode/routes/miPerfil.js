@@ -1,5 +1,6 @@
-var express = require ('../views/miPerfil.ejs');
+var express = require('express');
 var router = express.Router();
+
 
 router.get("/perfil" , function(req,res) {
 

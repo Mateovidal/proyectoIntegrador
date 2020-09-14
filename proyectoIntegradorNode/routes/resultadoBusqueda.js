@@ -1,5 +1,6 @@
-var express = require ('../views/resultadoBusqueda.ejs');
+var express = require('express');
 var router = express.Router();
+
 
 router.get("/resultadoBusqueda" , function(req,res) {
 
