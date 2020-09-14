@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
+var userController = require("../controllers/userController.js")
+// EL PREFIJO PARA ESTA PAGINA ES "/MIPERFIL"
 
-router.get("/perfil" , function(req,res) {
+
+// localhost:3000/miPerfil/
+router.get("/" , userController.miPerfil);
 
 
-res.send ("Mi perfil");
 
-});
 
 module.exports = router;

@@ -34,6 +34,12 @@ app.use('/agregarPost', rutaAgregarPost)
 let rutasHome = require("./routes/home");
 app.use("/home",rutasHome);
 
+let rutasLogin = require("./routes/login");
+app.use("/login",rutasLogin);
+
+let rutasMiPerfil = require("./routes/miPerfil");
+app.use("/miPerfil",rutasMiPerfil);
+
 
 // let rutasHeaderDeslogueado = require("./routes/headerDeslogueado");
 // app.use("./headerDeslogueado",rutasHeaderDeslogueado);
