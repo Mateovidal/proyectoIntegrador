@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get("/registracion" , function(req,res) {
+var userController = require("../controllers/userController.js");
+const userController = require('../controllers/userController.js');
+// EL PREFIJO PARA ESTA PAGINA ES "/resultadoBusqueda"
 
 
-res.send ("Registracion");
-
-});
-
+// localhost:3000/home/
+router.get("/" , userController.registracion);
 module.exports = router;

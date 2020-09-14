@@ -2,11 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get("/resultadoBusqueda" , function(req,res) {
+var resultadoBusquedaController = require("../controllers/resultadoBusquedaController.js")
+// EL PREFIJO PARA ESTA PAGINA ES "/resultadoBusqueda"
 
 
-res.send ("Resultado de busqueda");
-
-});
-
+// localhost:3000/home/
+router.get("/" , resultadoBusquedaController.resultadoBusqueda);
 module.exports = router;
