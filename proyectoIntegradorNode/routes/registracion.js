@@ -3,7 +3,6 @@ var router = express.Router();
 
 
 var userController = require("../controllers/userController.js");
-const userController = require('../controllers/userController.js');
 // EL PREFIJO PARA ESTA PAGINA ES "/resultadoBusqueda"
 
 

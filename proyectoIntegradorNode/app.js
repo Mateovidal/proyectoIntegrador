@@ -24,6 +24,11 @@ app.use('/users', usersRouter);
 
 // let rutaPrueba = require('./routes/prueba')
 // app.use('/prueba', rutaPrueba)
+let rutaRegistracion = require('./routes/registracion')
+app.use('/registracion', rutaRegistracion)
+
+let rutaResultadoBusqueda = require('./routes/resultadoBusqueda')
+app.use('/resultadoBusqueda', rutaResultadoBusqueda)
 
 let rutaAgregarPost = require('./routes/agregarPost')
 app.use('/agregarPost', rutaAgregarPost)
