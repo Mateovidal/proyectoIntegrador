@@ -7,6 +7,9 @@ header{
     height: 55px;
     padding-top: 10px;
 }
+header section h1{
+    font-family: 'Simplifica', sans-serif;
+}
 header section{
     height: 100%;
 }
