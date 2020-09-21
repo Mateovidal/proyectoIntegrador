@@ -1,7 +1,17 @@
-footer{
+footer.footernacho{
     height: 40px;
     color: white;
     padding: 0 10px;
+    background-color:  rgb(243, 234, 234);
+    
+}
+footer.footernacho ul li {
+color: rgb(154, 2, 255);
+}
+
+footer.footernacho ul li a {
+   color: rgb(154, 2, 255);
+    
 }
 
 footer ul{

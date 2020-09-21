@@ -3,4 +3,21 @@
 }
 main{
     margin-bottom: 40px;
+    margin-top: 40px;
 }
+header {
+background-color: rgb(154, 2, 255);
+}
+
+header h2 a {
+   
+  
+    
+}
+
+header ul li a {
+   
+    font-family: "Lobster", cursive !important;
+    
+}
+
