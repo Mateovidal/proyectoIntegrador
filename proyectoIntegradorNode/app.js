@@ -33,6 +33,10 @@ app.use('/resultadoBusqueda', rutaResultadoBusqueda)
 let rutaAgregarPost = require('./routes/agregarPost')
 app.use('/agregarPost', rutaAgregarPost)
 
+
+let rutaDetallePost = require('./routes/detallePost')
+app.use('/detallePost', rutaDetallePost)
+
 // let rutasAgregarPost = require("./routes/agregarPost");
 // app.use("/agregarPost",rutasAgregarPost);
 

@@ -61,6 +61,15 @@ article.detalle-post .imagen-post{
     text-decoration: none;
     margin-right: 4px !important;
 }
-
+header{
+    height: 8vh !important;
+}
+main{
+    height: 86vh !important;
+    margin-bottom: 0 ! important;
+}
+footer{
+    height: 6vh !important;
+}
 
 
