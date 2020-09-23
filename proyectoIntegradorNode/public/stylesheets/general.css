@@ -9,9 +9,9 @@ header {
 background-color: rgb(154, 2, 255);
 }
 
-header h2 a {
+body header h2 a {
    
-  
+  font-family: 'Do Hyeon', sans-serif !important;
     
 }
 
@@ -19,5 +19,14 @@ header ul li a {
    
     font-family: "Lobster", cursive !important;
     
+}
+
+body main article ul li a {
+    font-family: "Oswald", sans-serif;
+}
+
+
+body main article ul a {
+    font-family: "Lobster", cursive;
 }
 
