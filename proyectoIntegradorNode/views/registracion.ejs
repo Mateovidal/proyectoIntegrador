@@ -66,40 +66,60 @@
             <div class="uk-container uk-container-large uk-flex uk-flex-middle uk-flex-center">
                 <form action="">
                     
-                    <h2>(Formulario de registración)</h2>
+                    <h2>Sign up</h2>
 
             
-                        <label for="Name">Name</label>
-                        <input type="text"id="Name" name="" value="" placeholder="Your name...">
-                        <br>
-                        <br>
-                        <label for="Lastname">Lastname</label>
-                        <input type="text"id="Lastname" name="" value="" placeholder="Your Lastname">
-                        <br>
-                        <br>
-                        <label for="E-mail">E-mail</label>
-                        <input type="text"id="E-mail" name="" value="" placeholder="example@example.com">
-                        <br>
-                        <br>
-                        <label for="Password">Password</label>
-                        <input type="text"id="Password" name="" value="">
-                        <br>
-                        <br>
-                        <label for="Birthday">Birthday</label>
-                        <input type="date"id="Birthday" name="" value="">
-                        <br>
-                        <br>
-                        <label for="Country of origin">Country of origin</label>
-                        <select>
-                          <option value="Argentina">Argentina</option>
-                          <option value="Mexico">Mexico</option>
-                          <option value="Uruguay">Uruguay</option>
-                          <option value="Colombia">Colombia</option>
-                        </select>
-                        <br>
-                        <br>
-                        <br>
-                        <input type="submit" value="Enviar este formulario" />
+                    <form>
+
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                <input class="uk-input" type="text" placeholder="Username...">
+                            </div>
+                        </div>
+                    
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                                <input class="uk-input" type="text" placeholder="Password...">
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                                <input class="uk-input" type="text" placeholder="Confirm Password...">
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">Email</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Email...">
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-select">Country</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" id="form-horizontal-select">
+                                    
+                                    <option>Argentina</option>
+                                    <option>Brasil</option>
+                                    <option>United States</option>
+                                    <option>Uruguay</option>
+                                    <option>Zimbawe</option>
+                                </select>
+                            </div>
+                        </div>
+                    
+                      
+                        <div>
+                            <div class="uk-button-group">
+                           
+                                <button class="uk-button uk-button-secondary">Submit</button>
+                                
+                            </div>
+                        </div>
+                 
+                    </form>
                     
             
                 </form>
