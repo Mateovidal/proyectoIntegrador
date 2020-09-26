@@ -1,3 +1,17 @@
+article.post div.info-usuario div img {
+    width: 40px;
+    height: 40px;
+}
+
+body main div.bodynacho div.uk-container section.uk-flex {
+    background-image: url('https://lh3.googleusercontent.com/dq9dMrBjGCOaUNn-8GdsSALaQoPbg0zgRtB196RtalJqq2wy8ZTR5Okdz_Ig-Cl6KJSUNcXf8i_s6ncRJvjTCq2PvFKBkbrEFKNuiuKdwciirbAlcHPIQPh3YWlfDjH7Vur7mJNR=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/dq9dMrBjGCOaUNn-8GdsSALaQoPbg0zgRtB196RtalJqq2wy8ZTR5Okdz_Ig-Cl6KJSUNcXf8i_s6ncRJvjTCq2PvFKBkbrEFKNuiuKdwciirbAlcHPIQPh3YWlfDjH7Vur7mJNR=w600-h315-p-k');
+    background-size: cover;
+    
+    
+    
+    
+}
+
 article.post{
     border: 1px solid lightgray;
     border-radius: 10px;
