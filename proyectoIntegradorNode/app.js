@@ -47,7 +47,12 @@ let rutasLogin = require("./routes/login");
 app.use("/login",rutasLogin);
 
 let rutasMiPerfil = require("./routes/miPerfil");
+const router = require('./routes/index');
 app.use("/miPerfil",rutasMiPerfil);
+
+let rutasCreate = require("./routes/create");
+app.use("create" , rutasCreate);
+
 
 
 // let rutasHeaderDeslogueado = require("./routes/headerDeslogueado");
