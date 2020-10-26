@@ -8,4 +8,7 @@ var userController = require("../controllers/userController.js");
 
 // localhost:3000/home/
 router.get("/" , userController.registracion);
+
+router.post("/", usersController.storeUser);
+
 module.exports = router;
