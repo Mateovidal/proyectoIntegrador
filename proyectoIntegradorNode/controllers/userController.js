@@ -16,9 +16,6 @@ let userController = {
     },
 
     storeUser: function(req, res) {
-        if (req.session.usuarioLogueado != undefined) {
-            res.redirect("/home");
-        }
 
         let name = req.body.name;
         let password = bcrypt.hashSync(req.body.password, 10);
@@ -29,6 +26,12 @@ let userController = {
             password: password,
             email: email
         }
+
+        db.User.create(user)
+        .then(function() {
+            res.redirect("/home");
+        })
+
 },
 
     detalleUsuario: function(req, res) {
@@ -37,16 +40,28 @@ let userController = {
 
     },
 
-    login: function(req, res) {
-        
-        res.render("login")
-
-    },
 
     home: function(req, res) {
         
         res.render("home")
 
     },
+
+    login: function(req, res) {
+        if (req.session.usuarioLogueado != undefined) {
+            res.redirect ("/home");
+
+        }
+        res.render("login");
+
+    },
+    
+    procesadoLogin: function(req, res) {
+        if (req.session.usuarioLogueado != undefined) {
+            res.redirect("/home");
+        }
+    }, 
+
+
 }
 module.exports = userController;

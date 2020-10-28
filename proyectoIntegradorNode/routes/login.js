@@ -8,7 +8,6 @@ var userController = require("../controllers/userController.js")
 // localhost:3000/login/
 router.get("/" , userController.login);
 
-
-
+router.post("/", userController.procesadoLogin);
 
 module.exports = router;
