@@ -45,43 +45,47 @@
                         <div class="uk-margin">
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" placeholder="Username...">
+                                <input class="uk-input" type="text" placeholder="Username..." name="username">
                             </div>
                         </div>
                     
                         <div class="uk-margin">
                             <div class="uk-inline">
                                 <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-                                <input class="uk-input" type="text" placeholder="Password...">
+                                <input class="uk-input" type="text" placeholder="Password..." name="password">
                             </div>
                         </div>
                         <div class="uk-margin">
                             <div class="uk-inline">
                                 <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-                                <input class="uk-input" type="text" placeholder="Confirm Password...">
+                                <input class="uk-input" type="text" placeholder="Confirm Password..." name="confirmPassword" >
                             </div>
                         </div>
                         <div class="uk-margin">
                             <label class="uk-form-label" for="form-stacked-text">Email</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Email...">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Email..." name="email">
                             </div>
                         </div>
                         <div class="uk-margin">
-                            <label class="uk-form-label" for="form-horizontal-select">Country</label>
+                            <label class="uk-form-label" for="form-horizontal-select">Security Question</label>
                             <div class="uk-form-controls">
-                                <select class="uk-select" id="form-horizontal-select">
+                                <select class="uk-select" id="form-horizontal-select" name="securityQuestion">
                                     
-                                    <option>Argentina</option>
-                                    <option>Brasil</option>
-                                    <option>United States</option>
-                                    <option>Uruguay</option>
-                                    <option>Zimbawe</option>
+                                    <option value="1">Which country where you born in?</option>
+                                    <option value="2">Your first pet's name:</option>
+                                    <option value="3">Your father's middle name:</option>
+                                    <option value="4">Favorite food:</option>
+                                    <option value="5">Childhood bestfriend's name:</option>
                                 </select>
                             </div>
                         </div>
-                    
-                      
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <span class="uk-form-icon uk-form-icon-flip" ></span>
+                                <input class="uk-input" type="text" placeholder="Answer..." name="securityQuestionAnswer" >
+                            </div>
+                        </div>
                         <div>
                             <div class="uk-button-group">
                            
