@@ -1,4 +1,17 @@
+// const { decodeBase64 } = require("bcryptjs");
+
+let db = require("../database/models");
+// const posts = require("../database/models/posts");
 let postsController = {
+    home: function(req,res){
+
+        db.posts.findAll()
+        .then (function(posts){
+        console.log(posts);   
+            res.render("home",{posts : posts}) 
+        })
+        
+    },
     
     agregarPost: function(req, res) {
 

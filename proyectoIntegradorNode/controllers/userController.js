@@ -40,16 +40,24 @@ let userController = {
 
     },
 
+
+  
+
     login: function(req, res) {
-        
-        res.render("login")
+        if (req.session.usuarioLogueado != undefined) {
+            res.redirect ("/home");
+
+        }
+        res.render("login");
 
     },
+    
+    procesadoLogin: function(req, res) {
+        if (req.session.usuarioLogueado != undefined) {
+            res.redirect("/home");
+        }
+    }, 
 
-    home: function(req, res) {
-        
-        res.render("home")
 
-    },
 }
 module.exports = userController;
