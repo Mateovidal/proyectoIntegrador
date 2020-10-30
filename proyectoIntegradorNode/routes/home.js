@@ -9,6 +9,6 @@ var postsController = require("../controllers/postsController.js")
 router.get("/" , postsController.home);
 
 
-//localhost:3000/home/login
+localhost:3000/home/login
 
 module.exports = router;

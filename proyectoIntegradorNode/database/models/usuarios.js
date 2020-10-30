@@ -5,15 +5,14 @@ module.exports = (sequelize,DataTypes) => {
             primaryKey:true
             },
         texto: {
-            type:DataTypes.STRING
+                type: DataTypes.STRING
+    
             },
+      
         fecha:{
             type:DataTypes.DATE
         },
-        username: {
-            type: DataTypes.STRING
-
-        },
+      
         email: {
             type: DataTypes.STRING
 

@@ -35,9 +35,9 @@ let userController = {
             email: email,
             fechaNacimiento: fechaNacimiento
         }
-        db.Usuarios.create(usuarios)
+        db.usuarios.create(usuarios)
         .then(function() {
-            res.redirect("/home");
+            res.redirect("home");
         })
 },
 
@@ -52,7 +52,7 @@ let userController = {
 
     login: function(req, res) {
         if (req.session.usuarioLogueado != undefined) {
-            res.redirect ("/home");
+            res.redirect ("home");
 
         }
         res.render("login");
@@ -61,7 +61,7 @@ let userController = {
     
     procesadoLogin: function(req, res) {
         if (req.session.usuarioLogueado != undefined) {
-            res.redirect("/home");
+            res.redirect("home");
         }
     }, 
 
