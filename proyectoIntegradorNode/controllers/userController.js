@@ -1,4 +1,4 @@
-// let db = require("../database/models/index")
+let db = require("../database/models/index")
 // let bcrypt = require("bcryptjs");
 
 let userController = {
@@ -10,6 +10,7 @@ let userController = {
     },
 
     registracion: function(req, res) {
+
         // if (req.session.usuarioLogueado != undefined) {
 
         //     res.redirect("/home")
@@ -18,21 +19,27 @@ let userController = {
 
     },
 
-//     storeUser: function(req, res) {
-//         if (req.session.usuarioLogueado != undefined) {
-//             res.redirect("/home");
-//         }
+    storeUser: function(req, res) {
+        // if (req.session.usuarioLogueado != undefined) {
+        //     res.redirect("/home");
+        // }
 
-//         let name = req.body.name;
-//         let password = bcrypt.hashSync(req.body.password, 10);
-//         let email = req.body.email;
+        let username = req.body.username;
+        let password = req.body.password;
+        let email = req.body.email;
+        let fechaNacimiento = req.body.fechaNacimiento;
 
-//         let user = {
-//             name: name,
-//             password: password,
-//             email: email
-//         }
-// },
+        let usuarios = {
+            username: username,
+            password: password,
+            email: email,
+            fechaNacimiento: fechaNacimiento
+        }
+        db.Usuarios.create(usuarios)
+        .then(function() {
+            res.redirect("/home");
+        })
+},
 
     detalleUsuario: function(req, res) {
         

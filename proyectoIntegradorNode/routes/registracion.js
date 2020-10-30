@@ -9,6 +9,6 @@ var userController = require("../controllers/userController.js");
 // localhost:3000/home/
 router.get("/" , userController.registracion);
 
-// router.post("/", userController.storeUser);
+router.post("/", userController.storeUser)
 
 module.exports = router;

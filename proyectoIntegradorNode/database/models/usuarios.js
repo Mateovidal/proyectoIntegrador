@@ -10,6 +10,18 @@ module.exports = (sequelize,DataTypes) => {
         fecha:{
             type:DataTypes.DATE
         },
+        name: {
+            type: DataTypes.STRING
+
+        },
+        email: {
+            type: DataTypes.STRING
+
+        },
+        password: {
+            type: DataTypes.STRING
+
+        },
         numero: {
             type:DataTypes.INTEGER
         },

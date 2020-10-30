@@ -22,8 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// let rutaPrueba = require('./routes/prueba')
-// app.use('/prueba', rutaPrueba)
 let rutaRegistracion = require('./routes/registracion')
 app.use('/registracion', rutaRegistracion)
 
@@ -33,12 +31,8 @@ app.use('/resultadoBusqueda', rutaResultadoBusqueda)
 let rutaAgregarPost = require('./routes/agregarPost')
 app.use('/agregarPost', rutaAgregarPost)
 
-
 let rutaDetallePost = require('./routes/detallePost')
 app.use('/detallePost', rutaDetallePost)
-
-// let rutasAgregarPost = require("./routes/agregarPost");
-// app.use("/agregarPost",rutasAgregarPost);
 
 let rutasHome = require("./routes/home");
 app.use("/home",rutasHome);
