@@ -10,7 +10,7 @@ module.exports = (sequelize,DataTypes) => {
         fecha:{
             type:DataTypes.DATE
         },
-        name: {
+        username: {
             type: DataTypes.STRING
 
         },
