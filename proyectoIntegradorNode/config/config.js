@@ -5,7 +5,8 @@ module.exports =
     "password": null,
     "database": "proyecto_integrador_schema",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql", 
+    "port": "8889"
 
   },
   "test": {
