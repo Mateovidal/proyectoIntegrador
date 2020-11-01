@@ -8,7 +8,4 @@ var postsController = require("../controllers/postsController.js")
 // localhost:3000/home/
 router.get("/" , postsController.home);
 
-
-localhost:3000/home/login
-
 module.exports = router;

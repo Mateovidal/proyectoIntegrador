@@ -6,10 +6,9 @@ module.exports = (sequelize,DataTypes) => {
             },
         texto: {
                 type: DataTypes.STRING
-    
             },
       
-        fecha:{
+        fechaNacimiento:{
             type:DataTypes.DATE
         },
       
@@ -18,6 +17,14 @@ module.exports = (sequelize,DataTypes) => {
 
         },
         password: {
+            type: DataTypes.STRING
+
+        },
+        preguntaSeguridad: {
+            type: DataTypes.STRING
+
+        },
+        respuestaSeguridad: {
             type: DataTypes.STRING
 
         },

@@ -28,16 +28,20 @@ let userController = {
         let password = req.body.password;
         let email = req.body.email;
         let fechaNacimiento = req.body.fechaNacimiento;
+        let preguntaSeguridad = req.body.preguntaSeguridad;
+        let respuestaSeguridad = req.body.respuestaSeguridad
 
         let usuarios = {
             username: username,
             password: password,
             email: email,
-            fechaNacimiento: fechaNacimiento
+            fechaNacimiento: fechaNacimiento,
+            preguntaSeguridad: preguntaSeguridad,
+            respuestaSeguridad: respuestaSeguridad
         }
         db.usuarios.create(usuarios)
         .then(function() {
-            res.redirect("home");
+            res.redirect("/home");
         })
 },
 
@@ -47,14 +51,11 @@ let userController = {
 
     },
 
-
-  
-
     login: function(req, res) {
         if (req.session.usuarioLogueado != undefined) {
             res.redirect ("home");
-
         }
+        
         res.render("login");
 
     },
