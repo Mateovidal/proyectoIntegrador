@@ -74,22 +74,22 @@
     <div class="uk-margin">
         <span class="uk-text-middle">Choose your photo/video to</span>
         <div uk-form-custom>
-            <input type="file">
+            <input type="file" name="url">
             <span class="uk-link">upload here!</span>
         </div>
     </div>
 
     <div class="uk-margin" uk-margin>
         <div uk-form-custom="target: true">
-            <input type="file">
-            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select image" disabled>
+            <input type="text">
+            <input class="uk-input uk-form-width-medium" type="text" placeholder="Paste image link" disabled>
         </div>
  
 
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-stacked-text">Caption</label>
                 <div class="uk-form-controls">
-                    <input class="uk-input" id="form-stacked-text" type="text" placeholder="Fun times ahead...">
+                    <input class="uk-input" id="form-stacked-text" type="text" placeholder="Fun times ahead..." name="texto_de_post">
                 </div>
             </div>
         <button class="uk-button uk-button-default">Submit</button>

@@ -12,15 +12,36 @@ let postsController = {
         })
         
     },
-    
+  
     agregarPost: function(req, res) {
 
         if (req.session.usuarioLogueado == undefined) {
             res.redirect ("login");
         }
-        res.render("agregarPost")
+        res.render("agregarPost") 
 
     },
+    
+    storePost: function(req, res) {
+        
+        if (req.session.usuarioLogueado == undefined) {
+            res.redirect ("login");
+        }
+        let usuario_id = req.body.usuario_id;
+        let url = req.body.url;
+        let texto_de_post = req.body.texto_de_post;
+
+        let posts = {
+            usuario_id: usuario_id,
+            url : url,
+            texto_de_post: texto_de_post
+        }
+    
+    db.posts.create(posts)
+    .then(function() {
+        res.redirect("/home");
+    })
+    }, 
 
     detallePost: function(req, res) {
         

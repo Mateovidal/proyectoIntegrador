@@ -8,4 +8,5 @@ var postsController = require("../controllers/postsController.js")
 
 // localhost:3000/home/
 router.get("/" , postsController.agregarPost);
+router.post("/" , postsController.storePost);
 module.exports = router;
