@@ -84,7 +84,7 @@ let userController = {
 
         .then(function(usuarios){
  var checkPassword = bcrypt.compareSync(req.body.password, usuarios.password);
- console.log(checkPassword);
+
             if (usuarios == null) {
     
                 // si el usuario es null, devuelvo mi res.send 
