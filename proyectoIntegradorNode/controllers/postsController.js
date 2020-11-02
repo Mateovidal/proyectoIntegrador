@@ -15,6 +15,9 @@ let postsController = {
     
     agregarPost: function(req, res) {
 
+        if (req.session.usuarioLogueado == undefined) {
+            res.redirect ("login");
+        }
         res.render("agregarPost")
 
     },
