@@ -29,7 +29,6 @@ let userController = {
         }
         let username = req.body.username;
         let password = bcrypt.hashSync(req.body.password, 10);
-        let confirmPassword = bcrypt.hashSync(req.body.confirmPassword, 10);
         let email = req.body.email;
         let fechaNacimiento = req.body.fechaNacimiento;
         let preguntaSeguridad = req.body.preguntaSeguridad;
@@ -38,7 +37,6 @@ let userController = {
         let usuarios = {
             username: username,
             password: password,
-            confirmPassword: confirmPassword,
             email: email,
             fechaNacimiento: fechaNacimiento,
             preguntaSeguridad: preguntaSeguridad,
@@ -77,21 +75,23 @@ let userController = {
         db.usuarios.findOne(
             {
                 where: [
-                    { email: req.body.email },
+                    { username: req.body.username },
                     // Busco el usuario en la base de datos segun el email que ingreso al registrarse
                     // Utilizo el findOne que o trae el dato, o trae null
                 ]
             }
         )
 
-        .then(function(usuario){
-            if (usuario == null) {
+        .then(function(usuarios){
+ var checkPassword = bcrypt.compareSync(req.body.password, usuarios.password);
+ console.log(checkPassword);
+            if (usuarios == null) {
     
-                // si el mail del usuario es null, devuelvo mi res.send 
+                // si el usuario es null, devuelvo mi res.send 
 
-                res.send("El mail no existe")
+                res.send("El usuario no existe")
 
-            } else if (bcrypt.compareSync(req.body.password, usuario.password) == false){
+            } else if (checkPassword != true){
                 
                 // Usamos compareSync para comparar las contraseñas encriptadas. Recibimos lo que puso el usuario como contraseña
                 // Como segundo parametro, recibimos lo que ya esta guardado en la base de datos  
@@ -102,13 +102,13 @@ let userController = {
             } else {
                 
                 // Guardo en session, los datos del usuario que se acaba de logear y lo guardo en mi variable usuario 
-                req.session.usuarioLogueado = usuario; 
+                req.session.usuarioLogueado = usuarios; 
 
                 // Si despues de todo esta todo true, bienvenido
                 res.redirect("/home")
             }
 
-         res.send (usuario);
+         res.send (usuarios);
         })
 
     }, 

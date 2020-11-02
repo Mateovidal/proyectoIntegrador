@@ -39,53 +39,65 @@
             <div class="uk-container uk-container-large uk-flex">
                 <section id="posts" class="uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-child-width-1-2 uk-width-1-1">
                    
-                   
-                   <% for( let index = 0; index < posts.length; index++ ) { %>
-                   <%= posts[index].texto_de_post %> 
-                   <% } %>
-                   
-                   
-                   
-                   
-                    <!-- <article class="post uk-card-default uk-flex uk-flex-column">
-                        <div class="info-usuario uk-flex ">
-                            <div>
-                                <img src="https://wallpapercave.com/wp/wp5020881.jpg" alt="">
+                  <ul>
+                    <% for( let index = 0; index < posts.length; index++ ) { %>
+                    <li> 
+                        
+                        <article class="post uk-card-default uk-flex uk-flex-column">
+                            <div class="info-usuario uk-flex ">
+                                <div>
+                                    <img src="https://wallpapercave.com/wp/wp5020881.jpg" alt="">
+                                </div>
+                                <h4> <%= posts[index].usuario_id %></h4>
+                                
                             </div>
-                            <h4>Leo Messi</h4>
-                            
-                        </div>
-                        <div class="post-body uk-flex uk-flex-center">
-                            <img src="https://www.mundodeportivo.com/r/GODO/MD/p5/Barca/Imagenes/2018/06/02/Recortada/img_jgascon_20180602-191906_imagenes_md_terceros_messi_and_kun-k77D-U444021019817R0H-980x554@MundoDeportivo-Web.JPG" alt="">
-                        </div>
-                        <div class="post-reacciones">
-                            <ul class="post-icons uk-flex uk-flex-between">
-                                <li><span class="" uk-icon="icon:heart; ratio: 1.3"></span>
-                                </li>
-                                <li><span class="" uk-icon="icon:comments; ratio: 1.3"></span>
-                                </li>
-                            </ul>
-                            <div class="post-pie uk-flex">
-                                <h5 class="uk-width-1-6">Leo Messi</h5>
-                                <br>
-                                <p class="uk-width-5-6">El KUNI</p>
+                            <div class="post-body uk-flex uk-flex-center">
+                                <img src="https://www.mundodeportivo.com/r/GODO/MD/p5/Barca/Imagenes/2018/06/02/Recortada/img_jgascon_20180602-191906_imagenes_md_terceros_messi_and_kun-k77D-U444021019817R0H-980x554@MundoDeportivo-Web.JPG" alt="">
                             </div>
-                        </div>
-                        <div class="post-comentarios">
-                            <h6>Comentarios</h6>
-                            <ul>
-                                <li>
-                                    <a href="">Pipita Higuain</a>
-                                    <p>Cracks!</p>
-                                </li>
-                                <li>
-                                    <a href="">Kun Aguero</a>
-                                    <p>Venite a Twitch, te estamos esperando!</p>
-                                </li>
-                                <a href="">Ver más...</a>
-                            </ul>
-                        </div>
-                    </article> -->
+                            <div class="post-reacciones">
+                                <ul class="post-icons uk-flex uk-flex-between">
+                                    <li><span class="" uk-icon="icon:heart; ratio: 1.3"></span>
+                                    </li>
+                                    <li><span class="" uk-icon="icon:comments; ratio: 1.3"></span>
+                                    </li>
+                                </ul>
+                                <div class="post-pie uk-flex">
+                                    <h5 class="uk-width-1-6"><%= posts[index].usuario_id %></h5>
+                                    <br>
+                                    <p class="uk-width-5-6"> <%= posts[index].texto_de_post %></p>
+                                </div>
+                            </div>
+                            <div class="post-comentarios">
+                                <h6>Comentarios</h6>
+                                <ul>
+                                    <li>
+                                        <a href="">Pipita Higuain</a>
+                                        <p>Cracks!</p>
+                                    </li>
+                                    <li>
+                                        <a href="">Kun Aguero</a>
+                                        <p>Venite a Twitch, te estamos esperando!</p>
+                                    </li>
+                                    <a href="">Ver más...</a>
+                                </ul>
+                            </div>
+                        </article>
+                    
+                    </li> 
+     
+                        <% } %>
+                        
+                  </ul> 
+                  
+                  
+                        
+               
+                  
+                  
+
+                   
+                   
+                    <!--  -->
                    
         
                 </section>

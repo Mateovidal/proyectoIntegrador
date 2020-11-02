@@ -3,8 +3,8 @@ module.exports = {
 
   "development": {
     "username": "root",
-    "password": "",
-    "database": "Proyecto Integrador",
+    "password": null,
+    "database": "proyecto_integrador_schema",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "port": "3306"
@@ -27,3 +27,12 @@ module.exports = {
 }
 
 
+// "development": {
+//   "username": "root",
+//   "password": null,
+//   "database": "proyecto_integrador_schema",
+//   "host": "127.0.0.1",
+//   "dialect": "mysql",
+//   "port": "3306"
+
+// },
