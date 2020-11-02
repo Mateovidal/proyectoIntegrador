@@ -25,14 +25,3 @@ module.exports = {
     "dialect": "mysql"
   }
 }
-
-
-// "development": {
-//   "username": "root",
-//   "password": null,
-//   "database": "proyecto_integrador_schema",
-//   "host": "127.0.0.1",
-//   "dialect": "mysql",
-//   "port": "3306"
-
-// },
