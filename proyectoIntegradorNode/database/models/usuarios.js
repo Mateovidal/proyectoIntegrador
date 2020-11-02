@@ -20,6 +20,10 @@ module.exports = (sequelize,DataTypes) => {
             type: DataTypes.STRING
 
         },
+        confirmPassword: {
+            type: DataTypes.STRING
+
+        },
         preguntaSeguridad: {
             type: DataTypes.STRING
 
