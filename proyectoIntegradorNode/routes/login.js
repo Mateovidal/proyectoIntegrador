@@ -10,4 +10,6 @@ router.get("/" , userController.login);
 
 router.post("/", userController.procesadoLogin);
 
+router.get("/logout" , userController.logout);
+
 module.exports = router;

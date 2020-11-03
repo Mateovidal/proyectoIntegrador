@@ -61,7 +61,7 @@ let userController = {
             res.redirect ("home");
         }
 
-        res.render("login");
+        res.render("login", { usuarioLogueado: req.session.usuarioLogueado});
 
     },
     
@@ -83,7 +83,8 @@ let userController = {
         )
 
         .then(function(usuarios){
- var checkPassword = bcrypt.compareSync(req.body.password, usuarios.password);
+            
+    var checkPassword = bcrypt.compareSync(req.body.password, usuarios.password);
 
             if (usuarios == null) {
     
@@ -103,15 +104,33 @@ let userController = {
                 
                 // Guardo en session, los datos del usuario que se acaba de logear y lo guardo en mi variable usuario 
                 req.session.usuarioLogueado = usuarios; 
+               
+                if (req.body.remember != undefined) {
 
-                // Si despues de todo esta todo true, bienvenido
-                res.redirect("/home")
+                    res.cookie("idDelUsuarioLogueado", usuarios.id, {maxAge: 1000 * 3000});
+
+                }
+
+                // si el usuario me pide que lo recuerde, lo guardo en la cookie
+                res.redirect("/home");
+                 // Si despues de todo esta todo true, bienvenido
+
             }
 
          res.send (usuarios);
         })
 
     }, 
+
+    logout: function(req,res) {
+
+        req.session.destroy();
+        //req.session.usuarioLogueado = undefined;
+
+        res.redirect("/home")
+
+
+    }
 
 
 }
