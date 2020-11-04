@@ -35,7 +35,14 @@
             <div class="uk-container uk-container-large uk-flex uk-flex-middle uk-flex-center">
                
                 <h2>(Resultados de busqueda)</h2>
+                 <ul>
+                    <% for( let i = 0; i < usuarios.length; i++ ) { %>
+                        <li>
+                            <%= usuarios[i].username %> 
+                        </li>    
+                    <% } %>
 
+                 </ul>
             </div>
         </div>
     </main>

@@ -97,20 +97,6 @@ app.use("/miPerfil",rutasMiPerfil);
 
 
 
-
-
-//let rutasCreate = require("./routes/create");
-//app.use("create" , rutasCreate);
-
-
-
-// let rutasHeaderDeslogueado = require("./routes/headerDeslogueado");
-// app.use("./headerDeslogueado",rutasHeaderDeslogueado);
-
-// let rutasHeaderLogueado = require("./routes/headerLogueado");
-// app.use("./headerLogueado",rutasHeaderLogueado);
-
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
