@@ -123,11 +123,11 @@ let userController = {
     }, 
 
     logout: function(req,res) {
-
+        res.clearCookie("idDelUsuarioLogueado")
         req.session.destroy();
         //req.session.usuarioLogueado = undefined;
 
-        res.redirect("/home")
+        return res.redirect("/home")
 
 
     }
