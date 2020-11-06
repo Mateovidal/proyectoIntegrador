@@ -1,13 +1,19 @@
-// const { decodeBase64 } = require("bcryptjs");
 
 let db = require("../database/models");
 
 let postsController = {
     home: function(req,res){
 
-        db.posts.findAll()
+        db.posts.findAll(
+    {
+        order: ["fecha_creacion"]
+
+    })
+
         .then (function(posts){
+
         console.log(posts);   
+    
             res.render("home",{posts : posts}) 
         })
         
@@ -41,7 +47,13 @@ let postsController = {
     .then(function() {
         res.redirect("/home");
     })
+    
     }, 
+
+    editPerfil: function(req, res) {
+
+        res.render("editPerfil");
+    },
 
     detallePost: function(req, res) {
         

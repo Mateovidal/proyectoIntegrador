@@ -9,5 +9,4 @@ var userController = require("../controllers/userController.js")
 router.get("/" , userController.miPerfil);
 
 
-
 module.exports = router;

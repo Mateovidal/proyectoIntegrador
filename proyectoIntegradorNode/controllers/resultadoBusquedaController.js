@@ -17,8 +17,9 @@ let resultadoBusquedaController = {
         db.usuarios.findAll(
             {
                 where: [
+
+            
                     { username: { [op.like]:  queBuscoElUsuario } }, 
-                    
                   
                 ],
                 order: ["username"],
