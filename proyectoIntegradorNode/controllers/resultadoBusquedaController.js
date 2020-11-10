@@ -40,6 +40,13 @@ let resultadoBusquedaController = {
 
         // res.render("resultadoBusqueda")
 
+    },
+    detalleResultadoBusqueda: function(req,res){
+        let id_usuarios = req.params.id
+        db.usuarios.findByPk(id_usuarios)
+        .then(function(usuario){
+            res.render("detalleUsuario",{usuario: usuario})
+        })
     }
 
 }

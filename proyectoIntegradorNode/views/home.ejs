@@ -48,7 +48,7 @@
                                 <div>
                                     <img src="https://wallpapercave.com/wp/wp5020881.jpg" alt="">
                                 </div>
-                                <h4> <%= posts[index].usuario_id %></h4>
+                                <h4> <%= posts[index].usuarioDelPost.username %></h4>
                                 
                             </div>
                             <div class="post-body uk-flex uk-flex-center">
@@ -71,12 +71,8 @@
                                 <h6>Comentarios</h6>
                                 <ul>
                                     <li>
-                                        <a href="">Pipita Higuain</a>
-                                        <p>Cracks!</p>
-                                    </li>
-                                    <li>
-                                        <a href="">Kun Aguero</a>
-                                        <p>Venite a Twitch, te estamos esperando!</p>
+                                        <a href=""><%= posts[index].comentariosDelPost.usuario_comentario %></a>
+                                        <p><%= posts[index].comentariosDelPost.texto_comentario %></p>
                                     </li>
                                     <a href="">Ver más...</a>
                                 </ul>

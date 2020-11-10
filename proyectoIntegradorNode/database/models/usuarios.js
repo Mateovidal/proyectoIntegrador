@@ -31,11 +31,25 @@ module.exports = (sequelize,DataTypes) => {
         numero: {
             type:DataTypes.INTEGER
         },
+        fotoPerfil: {
+            type:DataTypes.STRING
+        },
      } ;
     var config = {
         tableName:"usuarios",
         timestamps: false
     };
     var usuarios = sequelize.define("usuarios", columnas, config);
+    usuarios.associate = function(models){
+        usuarios.hasMany(models.posts,{
+            as: "postsDelUsuario",
+            foreignKey: "usuario_id"
+        }),
+        usuarios.hasMany(models.comentarios,{
+            as: "comentariosDelUsuario",
+            foreignKey: "usuario_comentario"
+        })
+
+    }
     return usuarios
     }

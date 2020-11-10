@@ -1,3 +1,5 @@
+const { Sequelize } = require("sequelize");
+
 module.exports = (sequelize,DataTypes) => {
     var columnas ={
         id: {type:DataTypes.INTEGER,
@@ -14,7 +16,8 @@ module.exports = (sequelize,DataTypes) => {
             type:DataTypes.STRING
                         },
         fecha_creacion: {
-            type:DataTypes.DATE
+            type:DataTypes.DATE,
+            defaultValue: Sequelize.NOW()
                         },
     };
     var config ={
@@ -22,5 +25,15 @@ module.exports = (sequelize,DataTypes) => {
         timestamps: false
     }; 
     var posts = sequelize.define("posts",columnas,config);
+    posts.associate = function(models){
+        posts.belongsTo(models.usuarios,{
+            as: "usuarioDelPost",
+            foreignKey: "usuario_id"
+        }),
+        posts.hasMany(models.comentarios,{
+            as: "comentariosDelPost",
+            foreignKey: "post_id"
+        })
+    }
     return posts
     }

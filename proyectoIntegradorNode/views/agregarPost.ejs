@@ -64,7 +64,7 @@
     <main>
         <div class="uk-section uk-section-small">
             <div class="uk-container uk-container-large uk-flex uk-container uk-container-large uk-flex uk-flex-middle uk-flex-center">
-                <form action="">
+                <form action="/agregarPost" method="POST">
                     <h2>Create Post</h2>
 
                     <form class="uk-form-stacked">
@@ -74,7 +74,7 @@
     <div class="uk-margin">
         <span class="uk-text-middle">Choose your photo/video to</span>
         <div uk-form-custom>
-            <input type="file" name="url">
+            <input type="file" >
             <span class="uk-link">upload here!</span>
         </div>
     </div>
@@ -82,7 +82,7 @@
     <div class="uk-margin" uk-margin>
         <div uk-form-custom="target: true">
             <input type="text">
-            <input class="uk-input uk-form-width-medium" type="text" placeholder="Paste image link" disabled>
+            <input class="uk-input uk-form-width-medium" type="text" placeholder="Paste image link" name="url">
         </div>
  
 

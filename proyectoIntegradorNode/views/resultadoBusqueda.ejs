@@ -37,8 +37,10 @@
                 <h2>(Resultados de busqueda)</h2>
                  <ul>
                     <% for( let i = 0; i < usuarios.length; i++ ) { %>
-                        <li class="listaBusqueda">
-                            <a href="/detalleUsuario"> <%= usuarios[i].username %> </a>
+                        <li>
+                            <a href="/resultadoBusqueda/<%=usuarios[i].id%>">
+                                <%=usuarios[i].username%> 
+                            </a>
                         </li>    
                     <% } %>
 

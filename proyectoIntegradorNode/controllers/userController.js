@@ -4,8 +4,19 @@ let bcrypt = require("bcryptjs");
 let userController = {
     
     miPerfil: function(req, res) {
+    db.posts.findAll({
+        where: {usuario_id : req.session.usuarioLogueado.id
+               },
+        
+    })
+    
+    .then(function(postsPerfil){
+  
+    res.render("miPerfil",{
+        postsPerfil : postsPerfil
+    })
+    })
 
-        res.render("miPerfil")
 
     },
 
@@ -33,6 +44,7 @@ let userController = {
         let fechaNacimiento = req.body.fechaNacimiento;
         let preguntaSeguridad = req.body.preguntaSeguridad;
         let respuestaSeguridad = req.body.respuestaSeguridad
+        let fotoPerfil = req.body.fotoPerfil
 
         let usuarios = {
             username: username,
@@ -40,7 +52,8 @@ let userController = {
             email: email,
             fechaNacimiento: fechaNacimiento,
             preguntaSeguridad: preguntaSeguridad,
-            respuestaSeguridad: respuestaSeguridad
+            respuestaSeguridad: respuestaSeguridad,
+            fotoPerfil: fotoPerfil
         }
         db.usuarios.create(usuarios)
         .then(function() {
@@ -49,8 +62,7 @@ let userController = {
 },
 
     detalleUsuario: function(req, res) {
-        
-        res.render("detalleUsuario")
+   
 
     },
 
@@ -84,7 +96,6 @@ let userController = {
 
         .then(function(usuarios){
             
-    var checkPassword = bcrypt.compareSync(req.body.password, usuarios.password);
 
             if (usuarios == null) {
     
@@ -92,7 +103,10 @@ let userController = {
 
                 res.send("El usuario no existe")
 
-            } else if (checkPassword != true){
+            }
+            
+            var checkPassword = bcrypt.compareSync(req.body.password, usuarios.password); 
+            if (checkPassword != true){
                 
                 // Usamos compareSync para comparar las contraseñas encriptadas. Recibimos lo que puso el usuario como contraseña
                 // Como segundo parametro, recibimos lo que ya esta guardado en la base de datos  
