@@ -61,6 +61,24 @@ let postsController = {
         res.render("editPerfil");
     },
 
+    delete: function(req, res) {
+
+            let borrarPostId = req.body.idPosts;
+
+            db.posts.destroy({ 
+                
+                where: {
+
+                    id: borrarPostId
+                }  
+            })
+
+            .then(function(){
+
+                res.redirect("/home")
+            })
+    },
+
     detallePost: function(req, res) {
         
         res.render("detallePost")
