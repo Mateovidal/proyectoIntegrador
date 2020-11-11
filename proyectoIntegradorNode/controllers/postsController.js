@@ -7,6 +7,7 @@ let postsController = {
         db.posts.findAll(
     {
         order: ["fecha_creacion"],
+        
         include:[
             {association : "usuarioDelPost"},
         ]
