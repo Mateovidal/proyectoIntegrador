@@ -29,11 +29,11 @@ module.exports = (sequelize,DataTypes) => {
         posts.belongsTo(models.usuarios,{
             as: "usuarioDelPost",
             foreignKey: "usuario_id"
-        }),
-        posts.hasMany(models.comentarios,{
-            as: "comentariosDelPost",
-            foreignKey: "post_id"
         })
+        // posts.hasMany(models.comentarios,{
+        //     as: "comentariosDelPost",
+        //     foreignKey: "post_id"
+        // })
     }
     return posts
     }

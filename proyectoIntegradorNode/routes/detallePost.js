@@ -8,7 +8,8 @@ var postsController = require("../controllers/postsController.js")
 
 // localhost:3000/home/
 router.get("/" , postsController.detallePost);
-router.post("/delete" , postsController.delete);
+router.get("/:id" , postsController.detallePost);
+// router.post("/delete" , postsController.delete);
 
 
 module.exports = router;

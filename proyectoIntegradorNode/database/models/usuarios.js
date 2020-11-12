@@ -1,3 +1,5 @@
+const { Sequelize } = require("sequelize");
+
 module.exports = (sequelize,DataTypes) => {
     var columnas = { 
         id:  {type:DataTypes.INTEGER,
@@ -34,6 +36,10 @@ module.exports = (sequelize,DataTypes) => {
         fotoPerfil: {
             type:DataTypes.STRING
         },
+        created_at:{
+            type:DataTypes.DATE,
+            defaultValue: Sequelize.NOW()
+        }
      } ;
     var config = {
         tableName:"usuarios",
@@ -44,11 +50,11 @@ module.exports = (sequelize,DataTypes) => {
         usuarios.hasMany(models.posts,{
             as: "postsDelUsuario",
             foreignKey: "usuario_id"
-        }),
-        usuarios.hasMany(models.comentarios,{
-            as: "comentariosDelUsuario",
-            foreignKey: "usuario_comentario"
         })
+        // usuarios.hasMany(models.comentarios,{
+        //     as: "comentariosDelUsuario",
+        //     foreignKey: "usuario_comentario"
+        // })
 
     }
     return usuarios

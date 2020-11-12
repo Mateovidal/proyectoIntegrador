@@ -62,28 +62,33 @@ let postsController = {
         res.render("editPerfil");
     },
 
-    delete: function(req, res) {
+    // delete: function(req, res) {
 
-            let borrarPostId = req.body.idPosts;
+    //         let borrarPostId = req.body.idPosts;
 
-            db.posts.destroy({ 
+    //         db.posts.destroy({ 
                 
-                where: {
+    //             where: {
 
-                    id: borrarPostId
-                }  
-            })
+    //                 id: borrarPostId
+    //             }  
+    //         })
 
-            .then(function(){
+    //         .then(function(){
 
-                res.redirect("/home")
-            })
-    },
+    //             res.redirect("/home")
+    //         })
+    // },
 
     detallePost: function(req, res) {
-        
-        res.render("detallePost")
-
+        let id_posts = req.params.id
+        db.posts.findByPk(id_posts,{ 
+            include:[
+            {association : "usuarioDelPost"},
+        ]})
+        .then(function(post){
+            res.render("detallePost",{post: post})
+        })
     }
 }
 
