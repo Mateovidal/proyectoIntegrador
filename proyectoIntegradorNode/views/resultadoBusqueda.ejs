@@ -34,6 +34,13 @@
         <div class="uk-section uk-section-small">
             <div class="uk-container uk-container-large uk-flex uk-flex-middle uk-flex-center">
                
+                <% if (usuarios.length == 0) { %>
+
+                    <h2>No encontramos resultados para tu busqueda</h2>
+
+                <% } %>
+
+
                 <h2>(Resultados de busqueda)</h2>
                  <ul>
                     <% for( let i = 0; i < usuarios.length; i++ ) { %>

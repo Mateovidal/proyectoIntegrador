@@ -17,15 +17,6 @@ let userController = {
     })
     })
 
-    let id_posts = req.params.id
-    db.posts.findByPk(id_posts,{ 
-        include:[
-        {association : "usuarioDelPost"},
-    ]})
-    .then(function(post){
-        res.render("detallePost",{post: post})
-    })
-
     },
 
     registracion: function(req, res) {

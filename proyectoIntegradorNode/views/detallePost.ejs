@@ -161,7 +161,7 @@
                             </form>
                             
                             
-                            <% if (usuarioLogueado.id == post.usuarioDelPost.id) { %>
+                            <% if (usuarioLogueado != null && usuarioLogueado.id == post.usuarioDelPost.id) { %>
 
                                 <div>
                                     <div class="uk-button-group">
