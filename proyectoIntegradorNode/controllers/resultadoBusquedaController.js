@@ -19,11 +19,17 @@ let resultadoBusquedaController = {
                 where: [
 
             
-                   {[op.or] [{ username: { [op.like]: "%" + queBuscoElUsuario + "%" }},
-                   {mail: { [op.like]: "%" + queBuscoElUsuario + "%"}
+                   {[op.or]: 
+                    
+                    [{ username: { [op.like]: "%" + queBuscoElUsuario + "%" }},
+
+
+                   {email: { [op.like]: "%" + queBuscoElUsuario + "%"}
                 
-                
-                }]}
+                }
+            
+           ]
+        }
                 // order: ["username"],
                 ,]
                 
