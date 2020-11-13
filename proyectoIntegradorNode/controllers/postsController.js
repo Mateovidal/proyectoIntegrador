@@ -60,37 +60,6 @@ let postsController = {
 
    
 
-    deletePost: function(req, res) {
-        
-        let id_post = req.params.id;
-        
-        db.posts.findByPk(id_post,{ 
-            include:[
-            {association : "usuarioDelPost"},
-        ]})
-        
-        if (res.locals.usuarioLogueado.id == post.usuarioDelPost.id) {
-           
-            
-            db.posts.destroy({ 
-                where: {
-    
-                    id : id_post
-                }  
-            })
-    
-            .then(function(){
-    
-                res.redirect("/home")
-            })  
-       
-        } else {
-            res.redirect("/home")
-        }
-       
-
-       
-    },
 
     detallePost: function(req, res) {
         let id_posts = req.params.id
@@ -101,6 +70,95 @@ let postsController = {
         .then(function(post){
             res.render("detallePost",{post: post})
         })
+    },
+    
+    deletePost: function(req, res) {
+        let usuario_id = req.session.usuarioLogueado.id
+        let id_post = req.params.id;
+        
+        db.posts.findByPk(id_post,{ 
+            include:[
+            {association : "usuarioDelPost"},
+        ]})
+        
+        .then(function(post){
+            if (usuario_id != undefined && usuario_id == post.usuario_id) {
+           
+            
+                db.posts.destroy({ 
+                    where: {
+        
+                        id : id_post
+                    }  
+                })
+        
+                .then(function(){
+        
+                    res.redirect("/home")
+                })  
+           
+            } else {
+                res.redirect("/home")
+            } 
+        })
+      
+       
+
+       
+    },
+    
+    editPost: function(req,res){
+        let id_post = req.params.id
+
+        db.posts.findByPk(id_post)
+        .then(function(postAEditar){
+            res.render("editPost", { postAEditar : postAEditar})
+        })
+
+    },
+
+    updatePost: function(req,res){
+        let id_post = req.params.id;
+        let usuario_id = req.session.usuarioLogueado.id;
+        let url = req.body.url;
+        let texto_de_post = req.body.texto_de_post
+
+        let posts = {
+            usuario_id: usuario_id,
+            url : url,
+            texto_de_post: texto_de_post
+        }
+
+        db.posts.findByPk(id_post,{ 
+            include:[
+            {association : "usuarioDelPost"},
+        ]})
+        
+        .then(function(post){
+            if (usuario_id != null && usuario_id == post.usuario_id) {
+           
+            
+                db.posts.update({ 
+                    texto_de_post : posts.texto_de_post,
+                    url : posts.url
+                    
+                },
+                {
+                    where: {
+                        id : id_post
+                    }
+                })
+        
+                .then(function(){
+        
+                    res.redirect("/detallePost/" + id_post)
+                })  
+           
+            } else {
+                res.redirect("/home")
+            } 
+        })
+      
     }
 }
 

@@ -10,6 +10,8 @@ var postsController = require("../controllers/postsController.js")
 router.get("/" , postsController.detallePost);
 router.get("/:id" , postsController.detallePost);
 router.get("/delete/:id" , postsController.deletePost);
+router.get("/edit/:id" , postsController.editPost);
+router.post("/edit/:id" , postsController.updatePost);
 
 
 module.exports = router;
