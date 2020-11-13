@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 
-var postsController = require("../controllers/postsController.js")
+var userController = require("../controllers/userController.js")
 
-router.get("/" , postsController.editPerfil);
+router.get("/" , userController.editPerfil);
 
 module.exports = router;

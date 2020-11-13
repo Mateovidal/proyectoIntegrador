@@ -51,34 +51,46 @@ let postsController = {
         }
     console.log(posts);
     db.posts.create(posts)
+    
     .then(function() {
         res.redirect("/home");
     })
     
     }, 
 
-    editPerfil: function(req, res) {
+   
 
-        res.render("editPerfil");
+    deletePost: function(req, res) {
+        
+        let id_post = req.params.id;
+        
+        db.posts.findByPk(id_post,{ 
+            include:[
+            {association : "usuarioDelPost"},
+        ]})
+        
+        if (res.locals.usuarioLogueado.id == post.usuarioDelPost.id) {
+           
+            
+            db.posts.destroy({ 
+                where: {
+    
+                    id : id_post
+                }  
+            })
+    
+            .then(function(){
+    
+                res.redirect("/home")
+            })  
+       
+        } else {
+            res.redirect("/home")
+        }
+       
+
+       
     },
-
-    // delete: function(req, res) {
-
-    //         let borrarPostId = req.body.idPosts;
-
-    //         db.posts.destroy({ 
-                
-    //             where: {
-
-    //                 id: borrarPostId
-    //             }  
-    //         })
-
-    //         .then(function(){
-
-    //             res.redirect("/home")
-    //         })
-    // },
 
     detallePost: function(req, res) {
         let id_posts = req.params.id

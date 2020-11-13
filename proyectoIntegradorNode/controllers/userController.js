@@ -135,6 +135,11 @@ let userController = {
 
     }, 
 
+    editPerfil: function(req, res) {
+
+        res.render("editPerfil");
+    },
+
     logout: function(req,res) {
         res.clearCookie("idDelUsuarioLogueado")
         req.session.destroy();

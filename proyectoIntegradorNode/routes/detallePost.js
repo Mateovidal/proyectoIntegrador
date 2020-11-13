@@ -9,7 +9,7 @@ var postsController = require("../controllers/postsController.js")
 // localhost:3000/home/
 router.get("/" , postsController.detallePost);
 router.get("/:id" , postsController.detallePost);
-// router.post("/delete" , postsController.delete);
+router.get("/delete/:id" , postsController.deletePost);
 
 
 module.exports = router;
