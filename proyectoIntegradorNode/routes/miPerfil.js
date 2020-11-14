@@ -7,6 +7,7 @@ var userController = require("../controllers/userController.js")
 
 // localhost:3000/miPerfil/
 router.get("/" , userController.miPerfil);
-
+router.get("/editPerfil/:id" , userController.editPerfil);
+router.post("/editPerfil" , userController.storeEditPerfil);
 
 module.exports = router;

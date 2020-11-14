@@ -9,5 +9,7 @@ var resultadoBusquedaController = require("../controllers/resultadoBusquedaContr
 // localhost:3000/home/
 router.get("/" , resultadoBusquedaController.resultadoBusqueda);
 router.get("/:id" , resultadoBusquedaController.detalleResultadoBusqueda);
+router.get("/resultadoBusquedaPorPost" , resultadoBusquedaController.resultadoBusquedaPorPost);
+router.get("/resultadoBusquedaPorPost/:id" , resultadoBusquedaController.detalleResultadoBusquedaPorPost);
 
 module.exports = router;

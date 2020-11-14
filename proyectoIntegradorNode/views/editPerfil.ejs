@@ -32,6 +32,78 @@
 
     <%- include("headerLogueado") %>
 
+
+    <form action="/miPerfil/editPerfil/ <%=usuarioLogueado.id%>" method="POST">
+    
+
+        <h2>Edite su informacion</h2>
+
+    <input type="hidden" name="id" value="<% usuarioLogueado.id %>">
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                <input class="uk-input" type="text" placeholder="Username" name="username" value="">
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                <input class="uk-input" type="password" placeholder="Password" name="Password" value="">
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                <input class="uk-input" type="email" placeholder="Email" name="Email" value="">
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                <input class="uk-input" type="date" placeholder="dd/mm/yyyy" name="fechaNacimiento" value="">
+            </div>
+        </div>
+
+        <div class="uk-margin" uk-margin>
+            <label class="uk-form-label" for="form-stacked-text">Profile photo</label>
+            <div uk-form-custom="target: true">
+                <input class="uk-input uk-form-width-medium" type="text" placeholder="Paste new profile picture url"  name="fotoPerfil" >
+            </div>
+    
+            <div class="uk-margin">
+                <label class="uk-form-label" for="form-horizontal-select">Security Question</label>
+                <div class="uk-form-controls">
+                    <select class="uk-select" id="form-horizontal-select" name="preguntaSeguridad" >
+                        
+                        <option value="1">Which country where you born in?</option>
+                        <option value="2">Your first pet's name:</option>
+                        <option value="3">Your father's middle name:</option>
+                        <option value="4">Favorite food:</option>
+                        <option value="5">Childhood bestfriend's name:</option>
+                    </select>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <div class="uk-inline">
+                    <span class="uk-form-icon uk-form-icon-flip" ></span>
+                    <input class="uk-input" type="text" placeholder="Answer..." name="respuestaSeguridad"  >
+                </div>
+            </div>
+            <div>
+                <div class="uk-button-group">
+            <a href="/miPerfil/editPerfil <% usuarioLogueado.id %>"></a>
+                    <button class="uk-button uk-button-secondary" type="submit">Submit</button>
+                    
+                </div>
+            </div>
+        
+    
+    
+    </form>
     
 
     <%- include("footer") %>

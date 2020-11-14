@@ -44,10 +44,6 @@ let resultadoBusquedaController = {
             
         })
 
-        
-
-        // res.render("resultadoBusqueda")
-
     },
     detalleResultadoBusqueda: function(req,res){
         let id_usuarios = req.params.id
@@ -55,7 +51,34 @@ let resultadoBusquedaController = {
         .then(function(usuario){
             res.render("detalleUsuario",{usuario: usuario})
         })
-    }
+    }, 
+    
+    resultadoBusquedaPorPost: function(req, res) {
+        let queBuscoElUsuario = req.query.buscador2;
+
+        db.posts.findAll(
+            {
+                where: [
+                    { texto_de_post: { [op.like]: "%" + queBuscoElUsuario + "%"} }
+                ],
+                order: ["texto_de_post"],
+                //limit: 2
+            }
+        )
+        .then(function(post) {
+            res.render("resultadoBusquedaPorPost", {post: post});
+        })
+    },
+
+    detalleResultadoBusquedaPorPost: function(req,res){
+        let id_posts = req.params.id
+        db.posts.findByPk(id_posts)
+        .then(function(post){
+            res.render("resultadoBusquedaPorPost",{post: post})
+        })
+    }, 
+
+
 
 }
 

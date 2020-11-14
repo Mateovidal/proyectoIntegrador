@@ -91,15 +91,14 @@ app.use("/login",rutasLogin);
 let rutasLogout = require("./routes/login");
 app.use("/logout",rutasLogout);
 
-let rutasEditPerfil = require("./routes/editPerfil");
-app.use("/editPerfil",rutasEditPerfil);
+// let rutasEditPerfil = require("./routes/editPerfil");
+// app.use("/editPerfil",rutasEditPerfil);
 
 let rutasMiPerfil = require("./routes/miPerfil");
-const router = require('./routes/index');
 app.use("/miPerfil",rutasMiPerfil);
 
 
-
+const router = require('./routes/index');
 
 
 // catch 404 and forward to error handler

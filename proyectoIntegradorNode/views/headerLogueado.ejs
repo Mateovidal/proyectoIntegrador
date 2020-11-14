@@ -4,6 +4,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
         <div class="">
+
+            
             <nav class="" uk-navbar>
                 <div class="uk-navbar-left">
                     <h2 class="logo"><a href="/home">ProGram</a></h2>
@@ -34,6 +36,11 @@
                 <div class="uk-navbar-right">
                     <ul class="uk-flex uk-flex-between uk-flex-middle">
                         <li>
+                            <form action= "/resultadoBusquedaPorPost" class="uk-search uk-search-default" method="GET">
+                                <span uk-search-icon></span>
+                                <input type="search" class="uk-search-input" placeholder="Buscar por #" name="buscador2">
+                            </form>
+
                             <form action= "/resultadoBusqueda" class="uk-search uk-search-default" method="GET">
                                 <span uk-search-icon></span>
                                 <input type="search" class="uk-search-input" placeholder="Buscar..." name="buscador">
