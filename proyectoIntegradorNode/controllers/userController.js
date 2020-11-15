@@ -137,40 +137,45 @@ let userController = {
 
     editPerfil: function(req, res) {
 
+        let id_usuario = req.params.id
 
-        let username = req.body.username;
-        // let password = bcrypt.hashSync(req.body.password, 10);
-        let email = req.body.email;
-        let fechaNacimiento = req.body.fechaNacimiento;
-        let preguntaSeguridad = req.body.preguntaSeguridad;
-        let respuestaSeguridad = req.body.respuestaSeguridad
-        let fotoPerfil = req.body.fotoPerfil
-
-
-        let usuarios = {
-            username: username,
-            // password: password,
-            email: email,
-            fechaNacimiento: fechaNacimiento,
-            preguntaSeguridad: preguntaSeguridad,
-            respuestaSeguridad: respuestaSeguridad,
-            fotoPerfil: fotoPerfil
-        }
-
-
-        db.usuarios.findAll(usuarios)
-        .then(function() {
-            res.render("editPerfil");
+        db.posts.findByPk(id_usuario)
+        .then(function(perfilAEditar){
+            res.render("editPerfil", { perfilAEditar : perfilAEditar})
         })
+        // let username = req.body.username;
+        // // let password = bcrypt.hashSync(req.body.password, 10);
+        // let email = req.body.email;
+        // let fechaNacimiento = req.body.fechaNacimiento;
+        // let preguntaSeguridad = req.body.preguntaSeguridad;
+        // let respuestaSeguridad = req.body.respuestaSeguridad
+        // let fotoPerfil = req.body.fotoPerfil
 
-        console.log("00000000");
+
+        // let usuarios = {
+        //     username: username,
+        //     // password: password,
+        //     email: email,
+        //     fechaNacimiento: fechaNacimiento,
+        //     preguntaSeguridad: preguntaSeguridad,
+        //     respuestaSeguridad: respuestaSeguridad,
+        //     fotoPerfil: fotoPerfil
+        // }
+
+
+        // db.usuarios.findAll(usuarios)
+        // .then(function(perfilAEditar) {
+        //     res.render("editPerfil", { perfilAEditar : perfilAEditar});
+        // })
+
+       
 
 
     },
 
     storeEditPerfil: function(req, res) {
 
-
+        let id_usuario = req.session.usuarioLogueado.id;
         let username = req.body.username;
         // let password = bcrypt.hashSync(req.body.password, 10);
         let email = req.body.email;
@@ -188,13 +193,24 @@ let userController = {
             preguntaSeguridad: preguntaSeguridad,
             respuestaSeguridad: respuestaSeguridad,
             fotoPerfil: fotoPerfil
-        }
+        };
 
-        console.log(usuarios); 
+        
 
-        db.usuarios.update(usuarios,{
+        db.usuarios.update({
+            username : usuarios.username,
+            // password: usuarios.password,
+            email: usuarios.email,
+            fechaNacimiento: usuarios.fechaNacimiento,
+            preguntaSeguridad: usuarios.preguntaSeguridad,
+            respuestaSeguridad: usuarios.respuestaSeguridad,
+            fotoPerfil: usuarios.fotoPerfil
+        },
+        {
+
+
             where: [{
-                id: req.body.id
+                id : id_usuario
             }]
         })
         
