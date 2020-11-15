@@ -85,6 +85,7 @@ let userController = {
         
         db.usuarios.findOne(
             {
+                
                 where: [
                     { username: req.body.username },
                     // Busco el usuario en la base de datos segun el email que ingreso al registrarse
@@ -98,6 +99,7 @@ let userController = {
 
             if (usuarios == null) {
     
+                // si el find.one no me trajo nada, entinces usuarios no existe
                 // si el usuario es null, devuelvo mi res.send 
 
                 res.send("El usuario no existe")
