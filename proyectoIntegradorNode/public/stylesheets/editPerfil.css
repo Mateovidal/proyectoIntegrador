@@ -1,0 +1,17 @@
+/* header{
+    height: 8vh !important;
+}
+main{
+    height: 86vh !important;
+    margin-bottom: 0 ! important;
+}
+footer{
+    height: 6vh !important;
+} */
+
+
+header ul li a {
+   
+    font-family: "Lobster", cursive !important;
+    
+}

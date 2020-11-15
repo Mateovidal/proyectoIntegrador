@@ -6,7 +6,7 @@ let postsController = {
 
         db.posts.findAll(
     {
-        order: ["fecha_creacion"],
+        order:[["fecha_creacion", "DESC"]],
         
         include:[
             {association : "usuarioDelPost"},
@@ -128,13 +128,14 @@ let postsController = {
             url : url,
             texto_de_post: texto_de_post
         }
-
+        
         db.posts.findByPk(id_post,{ 
             include:[
             {association : "usuarioDelPost"},
         ]})
         
         .then(function(post){
+
             if (usuario_id != null && usuario_id == post.usuario_id) {
            
             

@@ -40,7 +40,7 @@ let resultadoBusquedaController = {
 
             // mando a una vista 
             // y los resultados los quiero compartir en la vista, asi que los mando a la vista
-            res.render("resultadoBusqueda", {usuarios: usuarios} , );
+            res.render("resultadoBusqueda", {usuarios: usuarios} );
             
         })
 
@@ -59,11 +59,22 @@ let resultadoBusquedaController = {
         db.posts.findAll(
             {
                 where: [
-                    { texto_de_post: { [op.like]: "%" + queBuscoElUsuario + "%"} }
-                ],
-                order: ["texto_de_post"],
+
+            
+                   {[op.or]: 
+                    
+                    [{ texto_de_post: { [op.like]: "%" + queBuscoElUsuario + "%" }
+                
+                }
+            
+           ]
+        },
+                     {order: ["fecha_creacion"]},
+                ,]
+                
                 //limit: 2
             }
+         
         )
         .then(function(post) {
             res.render("resultadoBusquedaPorPost", {post: post});
