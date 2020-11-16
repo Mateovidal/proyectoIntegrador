@@ -43,16 +43,19 @@ app.use(function(req,res,next){
 
   // hay una cookie, el usuario dijo que quiere que lo recuerden primer parametro
   // pero, como cerro el navegador quedo deslogueado
+
   if(req.cookies.idDelUsuarioLogueado != undefined && req.session.usuarioLogueado == undefined){
 
-    // pedimos un usuario que matchee la primary key segun lo que hay en la cookie
-    // ya si estoy este if estoy seguro que hay algo en la cookie 
 
     db.usuarios.findByPk(req.cookies.idDelUsuarioLogueado)
     .then(function(usuarios){
+
+
       // logueo al usuario, pongo en session todos los datos del usuario logueado 
+
       req.session.usuarioLogueado = usuarios;
-      // refresheo la pagina para acatar posibles errores en la cookie
+   
+
       res.redirect(req.originalUrl);
       next();
     })

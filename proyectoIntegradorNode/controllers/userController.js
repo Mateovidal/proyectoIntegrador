@@ -55,10 +55,32 @@ let userController = {
             respuestaSeguridad: respuestaSeguridad,
             fotoPerfil: fotoPerfil
         }
-        db.usuarios.create(usuarios)
-        .then(function() {
-            res.redirect("/home");
-        })
+
+
+
+        db.usuarios.findOne(
+            {
+                where:
+                   {email:  req.body.email}
+                
+            })
+
+            .then(function(mailBuscado){
+                if(mailBuscado != null){
+                    res.send("Este mail ya esta registrado!")
+                }
+                else {
+                    db.usuarios.create(usuarios)
+                    //una vez creado el usuario, usamos un then xq es una promesa y te redirije al login 
+                    .then(function() {
+                        res.redirect("/login");
+                    })
+                    .catch(function(error){
+                    console.log(error)
+                    })
+                }
+            })
+
 },
 
     detalleUsuario: function(req, res) {
@@ -94,30 +116,27 @@ let userController = {
     procesadoLogin: function(req, res) {
 
            // si ya estas logueado, no quiero que funcione esta parte del login 
+
            if (req.session.usuarioLogueado != undefined) {
             res.redirect ("home");
         }
         
         let usuario = req.body.username
+
         db.usuarios.findOne(
             {
-                
                 where: [
                     { 
 
                         [op.or]: [
-                            {username: { [op.like]: "%" + usuario + "%"}},    
-                            {email: { [op.like]: "%" + usuario + "%"}}
+                            {username: usuario},    
+                            {email: usuario }
                         ]
 
                     },
 
                 ]
-                // where: [
-                //     { username: req.body.username },
-                //     // Busco el usuario en la base de datos segun el email que ingreso al registrarse
-                //     // Utilizo el findOne que o trae el dato, o trae null
-                // ]
+              
             }
         )
 
@@ -136,9 +155,6 @@ let userController = {
             var checkPassword = bcrypt.compareSync(req.body.password, usuarios.password); 
             if (checkPassword != true){
                 
-                // Usamos compareSync para comparar las contraseñas encriptadas. Recibimos lo que puso el usuario como contraseña
-                // Como segundo parametro, recibimos lo que ya esta guardado en la base de datos  
-                // Si esto devuelve false, la contraseña no matchea
 
                 res.send("La contraseña es incorrecta")
 
@@ -147,6 +163,8 @@ let userController = {
                 // Guardo en session, los datos del usuario que se acaba de logear y lo guardo en mi variable usuario 
                 req.session.usuarioLogueado = usuarios; 
                
+
+//-------------------------------------------------------------------------------------------------------------------------------------------//
                 if (req.body.remember != undefined) {
 
                     res.cookie("idDelUsuarioLogueado", usuarios.id, {maxAge: 1000 * 3000});
@@ -172,31 +190,6 @@ let userController = {
         .then(function(perfilAEditar){
             res.render("editPerfil", { perfilAEditar : perfilAEditar})
         })
-        // let username = req.body.username;
-        // // let password = bcrypt.hashSync(req.body.password, 10);
-        // let email = req.body.email;
-        // let fechaNacimiento = req.body.fechaNacimiento;
-        // let preguntaSeguridad = req.body.preguntaSeguridad;
-        // let respuestaSeguridad = req.body.respuestaSeguridad
-        // let fotoPerfil = req.body.fotoPerfil
-
-
-        // let usuarios = {
-        //     username: username,
-        //     // password: password,
-        //     email: email,
-        //     fechaNacimiento: fechaNacimiento,
-        //     preguntaSeguridad: preguntaSeguridad,
-        //     respuestaSeguridad: respuestaSeguridad,
-        //     fotoPerfil: fotoPerfil
-        // }
-
-
-        // db.usuarios.findAll(usuarios)
-        // .then(function(perfilAEditar) {
-        //     res.render("editPerfil", { perfilAEditar : perfilAEditar});
-        // })
-
        
 
 
@@ -245,9 +238,12 @@ let userController = {
         
 
         .then(function() {
-            res.redirect("/miPerfil");
-        })
-
+            res.clearCookie("idDelUsuarioLogueado")
+          //  req.session.usuarioLog = undefined;
+            req.session.destroy();
+    
+      return      res.redirect("/login")
+            })
 
     },
 
