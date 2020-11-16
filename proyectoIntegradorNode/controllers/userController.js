@@ -79,13 +79,14 @@ let userController = {
     procesadoLogin: function(req, res) {
 
            // si ya estas logueado, no quiero que funcione esta parte del login 
+
            if (req.session.usuarioLogueado != undefined) {
             res.redirect ("home");
         }
         
         db.usuarios.findOne(
             {
-                
+
                 where: [
                     { username: req.body.username },
                     // Busco el usuario en la base de datos segun el email que ingreso al registrarse
@@ -120,6 +121,8 @@ let userController = {
                 // Guardo en session, los datos del usuario que se acaba de logear y lo guardo en mi variable usuario 
                 req.session.usuarioLogueado = usuarios; 
                
+
+//-------------------------------------------------------------------------------------------------------------------------------------------//
                 if (req.body.remember != undefined) {
 
                     res.cookie("idDelUsuarioLogueado", usuarios.id, {maxAge: 1000 * 3000});
@@ -145,31 +148,6 @@ let userController = {
         .then(function(perfilAEditar){
             res.render("editPerfil", { perfilAEditar : perfilAEditar})
         })
-        // let username = req.body.username;
-        // // let password = bcrypt.hashSync(req.body.password, 10);
-        // let email = req.body.email;
-        // let fechaNacimiento = req.body.fechaNacimiento;
-        // let preguntaSeguridad = req.body.preguntaSeguridad;
-        // let respuestaSeguridad = req.body.respuestaSeguridad
-        // let fotoPerfil = req.body.fotoPerfil
-
-
-        // let usuarios = {
-        //     username: username,
-        //     // password: password,
-        //     email: email,
-        //     fechaNacimiento: fechaNacimiento,
-        //     preguntaSeguridad: preguntaSeguridad,
-        //     respuestaSeguridad: respuestaSeguridad,
-        //     fotoPerfil: fotoPerfil
-        // }
-
-
-        // db.usuarios.findAll(usuarios)
-        // .then(function(perfilAEditar) {
-        //     res.render("editPerfil", { perfilAEditar : perfilAEditar});
-        // })
-
        
 
 
