@@ -29,10 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({ secret: "Vamo arriba"}));
 
-// para tener mi informacion en todas las vistas, 
-// el res.locals nos permite tener informacion que yo quiero compartir con toooodas las vistas, 
-// No hace falta ir al controllador porue esto ya esta ebn todas las vistas
-// comparto el usuario logueado con todoas las vistas con el res.locals
+
 
 app.use(function(req,res,next){
 
@@ -50,8 +47,6 @@ app.use(function(req,res,next){
 
   if(req.cookies.idDelUsuarioLogueado != undefined && req.session.usuarioLogueado == undefined){
 
-    // pedimos un usuario que matchee la primary key segun lo que hay en la cookie
-    // ya si estoy este if estoy seguro que hay algo en la cookie 
 
     db.usuarios.findByPk(req.cookies.idDelUsuarioLogueado)
     .then(function(usuarios){
