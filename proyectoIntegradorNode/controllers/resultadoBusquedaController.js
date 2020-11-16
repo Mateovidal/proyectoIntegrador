@@ -69,6 +69,13 @@ let resultadoBusquedaController = {
             
            ]
         },
+        { 
+
+           
+             include:[
+          
+             {association : "usuarioDelPost"},
+         ]},
                      {order: ["fecha_creacion"]},
                 ,]
                 

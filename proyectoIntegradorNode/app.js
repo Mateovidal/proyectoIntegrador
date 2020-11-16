@@ -29,10 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({ secret: "Vamo arriba"}));
 
-// para tener mi informacion en todas las vistas, 
-// el res.locals nos permite tener informacion que yo quiero compartir con toooodas las vistas, 
-// No hace falta ir al controllador porue esto ya esta ebn todas las vistas
-// comparto el usuario logueado con todoas las vistas con el res.locals
 
 app.use(function(req,res,next){
 

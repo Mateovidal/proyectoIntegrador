@@ -32,38 +32,12 @@
 
     <%- include("headerLogueado") %>
 
-    <!-- <header class="">
-        <section class=" uk-container uk-container-large">
-            <div class="">
-                <nav class="" uk-navbar>
-                    <div class="uk-navbar-left">
-                        <h2 class="logo"><a href="home.html">FalseBook</a></h2>
-                    </div>
-                    <div class="uk-navbar-center">
-                        <ul class="uk-flex uk-flex-between uk-flex-middle">
-                            <li><a href="home.html">Home</a></li>
-                            <li><a href="agregarPost.html">Postear</a></li>
-                            <li><a href="miPerfil.html">Perfil</a></li>
-                        </ul>
-                    </div>
-                    <div class="uk-navbar-right">
-                        <ul class="uk-flex uk-flex-between uk-flex-middle">
-                            <li>
-                                <form action="" class="uk-search uk-search-default">
-                                    <span uk-search-icon></span>
-                                    <input type="search" class="uk-search-input" placeholder="Buscar...">
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </section>
-    </header> -->
+    
 
     <main>
         <div class="uk-section uk-section-small">
             <div class="uk-container uk-container-large uk-flex uk-container uk-container-large uk-flex uk-flex-middle uk-flex-center">
+             <!-- el action nos dice a donde nos va a llevar, el method nos indica que viaja por POST -->
                 <form action="/agregarPost" method="POST">
                     <h2>Create Post</h2>
 
@@ -84,7 +58,7 @@
             <input type="text">
             <input class="uk-input uk-form-width-medium" type="text" placeholder="Paste image link" name="url">
         </div>
- 
+ <!-- los names de cada campo hacen referencia a al dato que ingresa el usuario en el form, como la url o el texto de post -->
 
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-stacked-text">Caption</label>

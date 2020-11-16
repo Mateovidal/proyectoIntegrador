@@ -101,11 +101,7 @@ let userController = {
         let usuario = req.body.username
         db.usuarios.findOne(
             {
-<<<<<<< HEAD
-
-=======
                 
->>>>>>> f9764f607fda5a7feb34dfeea0014049daa5455a
                 where: [
                     { 
 

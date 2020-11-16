@@ -7,6 +7,10 @@ var postsController = require("../controllers/postsController.js")
 
 
 // localhost:3000/home/
+
+// Para que el usuario complete el formulario:
 router.get("/" , postsController.agregarPost);
+
+//Cuando el usuario ya lo completó y tenemos que leer y procesar esa información:
 router.post("/" , postsController.storePost);
 module.exports = router;
