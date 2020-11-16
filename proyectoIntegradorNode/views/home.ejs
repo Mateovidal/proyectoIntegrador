@@ -38,15 +38,16 @@
         <div class="uk-section uk-section-small bodynacho">
             <div class="uk-container uk-container-large uk-flex">
                 <section id="posts" class="uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-child-width-1-2 uk-width-1-1">
-                   
+                  
                   <ul>
+                      
                     <% for( let index = 0; index < posts.length; index++ ) { %>
                     <li> 
                         
                         <article class="post uk-card-default uk-flex uk-flex-column">
                             <div class="info-usuario uk-flex ">
                                 <div>
-                                    <img src="https://wallpapercave.com/wp/wp5020881.jpg" alt="">
+                                    <img src="<%= posts[index].usuarioDelPost.fotoPerfil %>" alt="">
                                 </div>
                                 <h4> <%= posts[index].usuarioDelPost.username %></h4>
                                 

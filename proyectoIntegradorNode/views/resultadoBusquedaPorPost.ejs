@@ -41,8 +41,10 @@
                 <% } %>
 
 
-                <h2>(Resultados de busqueda)</h2>
-                 <ul>
+                <h2>Posts con ese #:</h2>
+                
+                <br>
+                <ul>
                     <% for( let i = 0; i < posts.length; i++ ) { %>
                         <li>
                             <a href="/resultadoBusquedaPorPost/<%=posts[i].id%>">

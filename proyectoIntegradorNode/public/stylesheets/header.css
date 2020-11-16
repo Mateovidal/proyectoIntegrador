@@ -50,3 +50,7 @@ header div.uk-navbar-center ul li:nth-last-child(1){
 header nav form input, header nav form ::placeholder, header nav form span{
     color: white !important;
 }
+.bienvenido {
+    
+    color: rgb(255, 251, 0) !important;
+}

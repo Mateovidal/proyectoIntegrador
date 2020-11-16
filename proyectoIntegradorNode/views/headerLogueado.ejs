@@ -12,17 +12,23 @@
                 </div>
                 <div class="uk-navbar-center">
                     <ul class="uk-flex uk-flex-between uk-flex-middle">
+                        
+                           
+                        
                         <li><a href="/home">Home</a></li>
 
                         <% if (usuarioLogueado != undefined) { %>
-
+                           
+                       
+                            <br>
                             <li><a href="/agregarPost">Postear</a></li>  
 
-                            <li>
-                                <p>Bienvenido! <%=usuarioLogueado.username %> </p>
-                            </li>
+                            
                             <li><a href="/miPerfil">Perfil</a></li>
-                            <li><a href="/login/logout">Log Out</a></li>  
+                            <li><a href="/login/logout">Log Out</a></li> 
+                           
+
+                            <p class="bienvenido">* Bienvenido! <%=usuarioLogueado.username %> *</p>
 
                         <% } else { %>
 

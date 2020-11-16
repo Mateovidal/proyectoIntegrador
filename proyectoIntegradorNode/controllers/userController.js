@@ -1,5 +1,6 @@
 let db = require("../database/models/index")
 let bcrypt = require("bcryptjs");
+let op = db.Sequelize.Op;
 
 let userController = {
     
@@ -61,7 +62,21 @@ let userController = {
 },
 
     detalleUsuario: function(req, res) {
-   
+        db.usuarios.findAll({
+            where: {usuario_id : req.body.id
+                   }, 
+            
+                   include:[
+                    {association : "postsDelUsuario"},
+                ]
+            
+        })
+        
+        .then(function(detalleUsuarioPosts){
+      
+        res.render("detalleUsuario",{ detalleUsuarioPosts : detalleUsuarioPosts})
+        })
+    
 
     },
 
@@ -84,14 +99,26 @@ let userController = {
             res.redirect ("home");
         }
         
+        let usuario = req.body.username
         db.usuarios.findOne(
             {
 
                 where: [
-                    { username: req.body.username },
-                    // Busco el usuario en la base de datos segun el email que ingreso al registrarse
-                    // Utilizo el findOne que o trae el dato, o trae null
+                    { 
+
+                        [op.or]: [
+                            {username: { [op.like]: "%" + usuario + "%"}},    
+                            {email: { [op.like]: "%" + usuario + "%"}}
+                        ]
+
+                    },
+
                 ]
+                // where: [
+                //     { username: req.body.username },
+                //     // Busco el usuario en la base de datos segun el email que ingreso al registrarse
+                //     // Utilizo el findOne que o trae el dato, o trae null
+                // ]
             }
         )
 
@@ -157,7 +184,7 @@ let userController = {
 
         let id_usuario = req.session.usuarioLogueado.id;
         let username = req.body.username;
-        // let password = bcrypt.hashSync(req.body.password, 10);
+        let password = bcrypt.hashSync(req.body.password, 10);
         let email = req.body.email;
         let fechaNacimiento = req.body.fechaNacimiento;
         let preguntaSeguridad = req.body.preguntaSeguridad;
@@ -167,7 +194,7 @@ let userController = {
 
         let usuarios = {
             username: username,
-            // password: password,
+            password: password,
             email: email,
             fechaNacimiento: fechaNacimiento,
             preguntaSeguridad: preguntaSeguridad,
@@ -179,7 +206,7 @@ let userController = {
 
         db.usuarios.update({
             username : usuarios.username,
-            // password: usuarios.password,
+            password: usuarios.password,
             email: usuarios.email,
             fechaNacimiento: usuarios.fechaNacimiento,
             preguntaSeguridad: usuarios.preguntaSeguridad,
