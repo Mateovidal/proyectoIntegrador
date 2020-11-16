@@ -101,7 +101,11 @@ let userController = {
         let usuario = req.body.username
         db.usuarios.findOne(
             {
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> f9764f607fda5a7feb34dfeea0014049daa5455a
                 where: [
                     { 
 
@@ -126,6 +130,7 @@ let userController = {
 
             if (usuarios == null) {
     
+                // si el find.one no me trajo nada, entinces usuarios no existe
                 // si el usuario es null, devuelvo mi res.send 
 
                 res.send("El usuario no existe")

@@ -45,7 +45,7 @@ app.use(function(req,res,next){
 
 app.use(function(req,res,next){
 
-  // hay una cookie, el usuario dijo que quiere que lo recuerden priemr parametro
+  // hay una cookie, el usuario dijo que quiere que lo recuerden primer parametro
   // pero, como cerro el navegador quedo deslogueado
   if(req.cookies.idDelUsuarioLogueado != undefined && req.session.usuarioLogueado == undefined){
 
