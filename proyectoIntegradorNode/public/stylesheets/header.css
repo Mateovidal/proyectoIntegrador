@@ -54,3 +54,11 @@ header nav form input, header nav form ::placeholder, header nav form span{
     
     color: rgb(255, 251, 0) !important;
 }
+/* mobile */
+@media only screen and (max-width: 480px) {
+
+}
+/* tablet */
+@media only screen and (max-width: 768px) {
+
+}

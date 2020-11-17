@@ -2,98 +2,89 @@ let db = require("../database/models/index")
 let op = db.Sequelize.Op;
 
 let resultadoBusquedaController = {
-    
     resultadoBusqueda: function(req, res) {
 
-        // esta variable busca que busco el usuario, req.query porque viaja por get 
-        // si el usuario busco hola, en la variable va a parecer hola 
-        let queBuscoElUsuario= req.query.buscador;
+        let queBuscoElUsuario = req.query.buscador;
 
-     
+    db.usuarios.findAll(
+        {
+            where: [
+                //buscar op OR
+                {[op.or]: [
+                    {username: { [op.like]: "%" + queBuscoElUsuario + "%"}},    
+                    {email: { [op.like]: "%" + queBuscoElUsuario + "%"}}
+                ]}
 
-        db.usuarios.findAll(
-            {
-                where: [
-
-            
-                   {[op.or]: 
-                    
-                    [{ username: { [op.like]: "%" + queBuscoElUsuario + "%" }},
-
-
-                   {email: { [op.like]: "%" + queBuscoElUsuario + "%"}
-                
-                }
-            
-           ]
+              //  { username: { [op.like]: "%" + queBuscoElUsuario + "%"} }
+                //{apellido: {[op.like]: "%" + queBuscoElUsuario + "%"} },
+          //, { mail: { [op.like]: "%" + queBuscoElUsuario + "%"} }
+          ,]
+            ,
+            // order: ["release_date"],
+            //limit: 2
         }
-                // order: ["username"],
-                ,]
-                
-                //limit: 2
-            }
-        ) 
-        .then(function(usuarios) {
-
-            
-            res.render("resultadoBusqueda", {usuarios: usuarios} );
-            
-        })
-
+    )
+    .then(function(usuarios) {
+        res.render("resultadoBusqueda", {usuarios: usuarios});
+    })
     },
-    detalleResultadoBusqueda: function(req,res){
-        let id_usuarios = req.params.id
-        db.usuarios.findByPk(id_usuarios)
-        .then(function(usuario){
-            res.render("detalleUsuario",{usuario: usuario})
-        })
-    }, 
     
-    resultadoBusquedaPorPost: function(req, res) {
-        let queBuscoElUsuario = req.query.buscador2;
-
-        db.posts.findAll(
-            {
-                where: [
-
-            
-                   {[op.or]: 
-                    
-                    [{ texto_de_post: { [op.like]: "%" + queBuscoElUsuario + "%" }
-                
-                }
-            
-           ]
-        },
-        { 
-
-           
-             include:[
-          
-             {association : "usuarioDelPost"},
-         ]},
-                     {order: ["fecha_creacion"]},
-                ,]
-                
-                //limit: 2
-            }
-         
-        )
-        .then(function(post) {
-            res.render("resultadoBusquedaPorPost", {post: post});
+    
+    resultadoBusquedaPorPost: function (req, res){
+        let queBuscoElUsuariox = req.query.buscador2;
+        db.posts.findAll({
+            include:
+                {association: "usuarioDelPost"},
+            where: [
+                { texto_de_post: {[op.like]: "#%" + queBuscoElUsuariox + "%"}   }
+            ],
+            order: [
+                ['fecha_creacion', 'DESC']
+            ],
+            limit: 20
         })
-    },
-
-    detalleResultadoBusquedaPorPost: function(req,res){
-        let id_posts = req.params.id
-        db.posts.findByPk(id_posts)
         .then(function(post){
-            res.render("resultadoBusquedaPorPost",{post: post})
+            //console.log(busquedaUsuario);
+            //res.send(busquedaUsuario);
+        return res.render("resultadoBusquedaPorPost", {post: post, queBuscoElUsuariox: queBuscoElUsuariox})
         })
-    }, 
+        .catch(function (error) {
+            console.log(error);
+        })
+    }
+    // resultadoBusquedaPorPost: function(req,res){
+    //     let queBuscoElUsuariox = req.query.buscador2
+    //     db.posts.findAll(
+
+    //         {
+    //             where: [
+
+    //                 {
+    //                     texto_de_post: { [op.like]: "%"+ queBuscoElUsuariox +"%"}
+    //                 }
+    //             ],
+
+    //             include: [
+
+    //                 {association : "usuarioDelPost"}
+    //             ]
+    //         }
+
+
+    //     )
+
+    //     .then(function(post){
+    //         res.render("resultadoBusquedaPorPost", {post: post})
+    //     })
+    // }
 
 
 
+
+
+    
 }
-
+    
+    
+   
 module.exports = resultadoBusquedaController;

@@ -10,4 +10,5 @@ router.get("/" , userController.miPerfil);
 router.get("/editPerfil/:id" , userController.editPerfil);
 router.post("/editPerfil/:id" , userController.storeEditPerfil);
 
+router.get("/detalleUsuario/:id" , userController.detalleUsuario);
 module.exports = router;

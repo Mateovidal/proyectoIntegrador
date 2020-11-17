@@ -82,25 +82,47 @@ let userController = {
             })
 
 },
+detalleUsuario: function(req, res){
+    let idUser = req.params.id;
 
-    detalleUsuario: function(req, res) {
-        db.usuarios.findAll({
-            where: {usuario_id : req.body.id
-                   }, 
-            
-                   include:[
-                    {association : "postsDelUsuario"},
-                ]
-            
+    db.usuarios.findByPk(idUser, {
+        include: [{ association: 'postsDelUsuario' }]
+    })
+        .then( function (post){
+           
+            return res.render('detalleUsuario', {post: post});
         })
+        .catch(function (error) {
+            console.log(error);
+        })
+},
+
+// detalleUsuario: function(req,res){
+//     let id_posts = req.params.id
+//     db.posts.findByPk(id_posts)
+//     .then(function(post){
+//         res.render("detalleUsuario",{post: post})
+//     })
+
+// }, 
+    // detalleUsuario: function(req, res) {
+    //     db.usuarios.findAll({
+    //         where: {usuario_id : req.params.id
+    //                }, 
+            
+    //                include:[
+    //                 {association : "postsDelUsuario"},
+    //             ]
+            
+    //     })
         
-        .then(function(detalleUsuarioPosts){
+    //     .then(function(detalleUsuarioPosts){
       
-        res.render("detalleUsuario",{ detalleUsuarioPosts : detalleUsuarioPosts})
-        })
+    //     res.render("detalleUsuario",{ detalleUsuarioPosts : detalleUsuarioPosts})
+    //     })
     
 
-    },
+    // },
 
     login: function(req, res) {
 
