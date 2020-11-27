@@ -22,8 +22,7 @@ let userController = {
 
     registracion: function(req, res) {
 
-        // si ya estas logueado, no quiero que funcione registracion
-        // si yo guarde algo en session, te vas a otro lado
+        // si ya estas logueado, no hace falta que te registres de nuevo
         if (req.session.usuarioLogueado != undefined) {
             res.redirect ("home");
         }
@@ -34,10 +33,11 @@ let userController = {
 
     storeUser: function(req, res) {
 
-          // si ya estas logueado, no quiero que funcione esta parte de la registracion 
+           // si ya estas logueado, no hace falta que te registres de nuevo
           if (req.session.usuarioLogueado != undefined) {
             res.redirect ("home");
         }
+        // Creo variables con nombres específicos, para cada dato que me manda el usuario al completar el formulario.
         let username = req.body.username;
         let password = bcrypt.hashSync(req.body.password, 10);
         let email = req.body.email;
@@ -45,7 +45,9 @@ let userController = {
         let preguntaSeguridad = req.body.preguntaSeguridad;
         let respuestaSeguridad = req.body.respuestaSeguridad
         let fotoPerfil = req.body.fotoPerfil
-
+// Indico que campo del formulario le corresponde a cada columna de mi tabla Usuarios en la base de datos. 
+//(usando los nombres de las variable que creamos arriba)
+//(dentro del objeto literal usuarios)
         let usuarios = {
             username: username,
             password: password,
@@ -69,12 +71,23 @@ let userController = {
                 if(mailBuscado != null){
                     res.send("Este mail ya esta registrado!")
                 }
+               
                 else {
+                   //Para envíar la info a la base de datos:
+                   // usamos el método create para generar un registro en la base de datos.
+                   // create recibe a usuarios que es el objeto literal que contiene a todas las columnas de la tabla usuarios en la base de datos.
+                  
                     db.usuarios.create(usuarios)
-                    //una vez creado el usuario, usamos un then xq es una promesa y te redirije al login 
+                   
+                //create es un pedido asincrónico a la base de datos, por lo que nesecito un then
+
+                 //este then dicta que va a pasar una vez que se realice el registro a la base de datos.
+                //en este caso le pedimos que redirija al usuario al login
                     .then(function() {
                         res.redirect("/login");
                     })
+                    //Luego verificamos si ocurió algún error
+                    //Si hubo algún error, lo muestra en la consola
                     .catch(function(error){
                     console.log(error)
                     })
@@ -83,15 +96,28 @@ let userController = {
 
 },
 detalleUsuario: function(req, res){
+   
+   //recupera el id del usuario, que viaja por URL
     let idUser = req.params.id;
 
+     //busca dentro de la base de datos, dentro de la tabla usuarios
+       //busca por Pk usando la id que recuperamos 
     db.usuarios.findByPk(idUser, {
-        include: [{ association: 'postsDelUsuario' }]
+
+         //incluye la relación entre la tabla de usuarios y la tabla de posts
+           //sirve para saber que posts tiene este usuario
+        include: [{ 
+             //nombre de la relacion :
+            association: 'postsDelUsuario' }]
     })
         .then( function (post){
-           
+            // después renderiza la vista del detalleUsuario correspondiente al usuario específico que queremos
             return res.render('detalleUsuario', {post: post});
         })
+        
+        //Luego verificamos si ocurió algún error
+        //Si hubo algún error, lo muestra en la consola
+
         .catch(function (error) {
             console.log(error);
         })
@@ -125,12 +151,13 @@ detalleUsuario: function(req, res){
     // },
 
     login: function(req, res) {
-
+        // Busco en la session para ver si hay alguien logueado
         // si en session hay cualquier usuario logueado, anda a la pagina de home
         if (req.session.usuarioLogueado != undefined) {
             res.redirect ("home");
         }
-
+ 
+        // Si nadie está logueado, renderizo la página del login
         res.render("login", { usuarioLogueado: req.session.usuarioLogueado});
 
     },
@@ -138,11 +165,13 @@ detalleUsuario: function(req, res){
     procesadoLogin: function(req, res) {
 
            // si ya estas logueado, no quiero que funcione esta parte del login 
-
+            // Llevamos al usuario a home
            if (req.session.usuarioLogueado != undefined) {
             res.redirect ("home");
         }
         
+        //Si todavia no está logueado:
+
         let usuario = req.body.username
 
         db.usuarios.findOne(
