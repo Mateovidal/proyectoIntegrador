@@ -187,10 +187,27 @@ detalleUsuario: function(req, res){
                
 
 //-------------------------------------------------------------------------------------------------------------------------------------------//
+               
+
+// Vamos al UserController para atajar si el usuario quiere que lo recuerde. 
+// Entonces, hago un if, que dice si en el req.body viene algo que se llama remember 
+// (en el req.body.remember, el cual remember era el name del campo de mi form) y es distinto a undefined, 
+/// es que el usuario tilo esa opción entonces tengo que guardar la cookie. 
+
                 if (req.body.remember != undefined) {
 
+                // Luego de haber creado el if, para crear la cookie, y guardar información en ella, 
+
+
+
+                // ejecutamos el método cookie() sobre el objeto response y le pasamos 2 argumentos:
+                //El nombre que le quiero asignar a la cookie (idDelUsarioLogueado)
+                // El valor (es del usuario el id, usuario.id)
                     res.cookie("idDelUsuarioLogueado", usuarios.id, {maxAge: 1000 * 3000});
 
+                    // Y para repasar un poco, lo que estamos haciendo aquí, es que en el momento que el usuario loguea, 
+                    // guardamos toda la info en session (nombre, email, password), 
+                    // pero también guardamos una cookie con el id del usuario. 
                 }
 
                 // si el usuario me pide que lo recuerde, lo guardo en la cookie
