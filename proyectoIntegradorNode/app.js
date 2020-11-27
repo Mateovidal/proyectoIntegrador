@@ -30,32 +30,58 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: "Vamo arriba"}));
 
 
+
+
 app.use(function(req,res,next){
 
+  // Para poder compartir esta información entre toooodas mis vistas. 
+  //  Utilizamos la variable res.locals, la cual es un objeto literal que utilizo para almacenar 
+  // todos los valores que quieran compartir con todas las vistas. 
+  
   res.locals={
+
+    //Luego a res.locals, voy a querer compartirle el usuarioLogueado y le voy a poner req.session.usuarioLogueado.
     usuarioLogueado: req.session.usuarioLogueado
   }
   next();
 
+  // Ya no hace falta ponerlo en todos los Controllers ahora, ya que compartí  mi usuarioLogueado con todas mis vistas con res.locals. 
+
 });
 
+
+//  Para finalizar la implementación de cookies, hay que hacer una validación en app.js, 
+// lo hago aquí porque el app.js es codigo que se ejecuta para todas las paginas. 
+
+
+//Entonces armo mi app.use con una function con req,res,next el cual sirve para hacer cosas que se hagan en todas las pagina. 
 app.use(function(req,res,next){
 
-  // hay una cookie, el usuario dijo que quiere que lo recuerden primer parametro
-  // pero, como cerro el navegador quedo deslogueado
+
+  // Hago un if, que dice, que hay una cookie que guarda el idDelUsuarioLogueado (el cual es el nombre de mi cookie)
+  // y es distinto undefined, (es decir hay algo ahí adentro), 
+  // pero además en session no hay nada (req.session.usuarioLogueado == undefined))
+
+  // Este if lo que valida que hay una cookie, 
+  // el usuario dijo que quiere que lo recuerden pero como cerro el navegador quedo deslogueado. 
 
   if(req.cookies.idDelUsuarioLogueado != undefined && req.session.usuarioLogueado == undefined){
 
+  // Ahora que me traje la base de datos, pido un usuario, a mi modelo de usuarios, que matchee con mi primary key 
+  // segun lo que hay en la cookie.
+  // El findByPk es un método que busca un registro con la clave primaria del mismo valor del parámetro que le pasamos, 
+  // que en este caso es lo que hay en la cookie, o sea el id del usuario que nos dijo que lo recordemos
 
     db.usuarios.findByPk(req.cookies.idDelUsuarioLogueado)
+
+
+    // Luego como toda promesa, tengo un .then con una function que recibe a usuarios.
     .then(function(usuarios){
 
-
-      // logueo al usuario, pongo en session todos los datos del usuario logueado 
-
+    // lo siguiente que hago es loguear al usuario, es decir, pongo en session todos los datos del usuario logueado
       req.session.usuarioLogueado = usuarios;
    
-
+      // refresheo la pagina para acatar posibles errores en la cookie
       res.redirect(req.originalUrl);
       next();
     })
@@ -64,7 +90,12 @@ app.use(function(req,res,next){
   }
 });
 
-// si hay cookie pero nada en session, el usuario tildo en recordame y lo tengo que loguear
+// En resumen lo que hace el IF es que ataja donde el usuario clickeo en recordame, 
+// es decir se guardó la cookie, pero como cerró el navegador, se perdió la session. 
+//El if chequea eso, si hay una cookie y el usuario no está logueado, voy a tener que ejecutar 
+//la lógica que está dentro del if, para que se autologee. 
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
