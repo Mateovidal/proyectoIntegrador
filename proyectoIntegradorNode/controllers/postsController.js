@@ -72,6 +72,7 @@ let postsController = {
 
 
     detallePost: function(req, res) {
+        
        //recupera el id del post, que viaja por URL
         let id_posts = req.params.id
      
@@ -109,6 +110,8 @@ let postsController = {
         
         //verifica que el usuario logueado sea el dueño del post que quiere borrar, como medida de seguridad
         .then(function(post){
+
+            
             if (usuario_id != undefined && usuario_id == post.usuario_id) {
            
                 //si el usuario está logueado y además es el dueño del post

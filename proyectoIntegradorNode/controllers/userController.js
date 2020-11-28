@@ -2,23 +2,49 @@ let db = require("../database/models/index")
 let bcrypt = require("bcryptjs");
 let op = db.Sequelize.Op;
 
+
+// Creo la variable userController 
+
 let userController = {
     
+// creo el metodo miPerfil quenrecibe una funcion con un req y res
+
     miPerfil: function(req, res) {
+
+
+        // busco en mi modelo de posts de mi base de datos con un Findall, 
+        // el cual es una función que busca todos los datos registrados en la tabla que especifique
+        
     db.posts.findAll({
+
+          // Luego usamos un objeto literal con el atributo WHERE el cual es un método de búsqueda 
+
+          // el cual nos sirve para para filtrar los datosen nuestra base de datos
+
+            // dentro de este where le decimos que ?????
         where: {usuario_id : req.session.usuarioLogueado.id
                },
         
     })
     
+
+            // como es un pedido asicnronico tiene que haber un then, ya que no se sabe cuanto tarda la informaicon en venir 
+            // queremos que se ejecute una vez que se ejecuta lo de arriba
+            // hacemos un .then que recibe la fucntion postPerfil
+
     .then(function(postsPerfil){
-  
+    
+   // y le hacemos un res.render para que renderize la vista miPerfil
+    // y le compartimos a la vista la informacion dentro de una variable???? postPerfil, para luego en la vista poder usarla
+
     res.render("miPerfil",{
         postsPerfil : postsPerfil
     })
     })
 
     },
+
+    // creamos el metodo regsitracion que recibe una funcion con req y res
 
     registracion: function(req, res) {
 
@@ -104,7 +130,7 @@ detalleUsuario: function(req, res){
        //busca por Pk usando la id que recuperamos 
     db.usuarios.findByPk(idUser, {
 
-         //incluye la relación entre la tabla de usuarios y la tabla de posts
+           //incluye la relación entre la tabla de usuarios y la tabla de posts
            //sirve para saber que posts tiene este usuario
         include: [{ 
              //nombre de la relacion :
