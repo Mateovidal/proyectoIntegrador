@@ -160,7 +160,10 @@
                           
                             </form>
                             
+                    <!-- si hay un usuarioLogueado que es distinto a null y tambien el post del usuario pertenece al Usuario, le muetsro el boton de borrar post y editar                            
                             
+                        En resumen: Si hay un usuario logueado y ademas ese usuario logueado es el dueño del post, dejalo borrarlo y editarlo
+                    -->
                             <% if (usuarioLogueado != null && usuarioLogueado.id == post.usuarioDelPost.id) { %>
 
                                 <div>

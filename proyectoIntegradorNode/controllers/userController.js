@@ -71,9 +71,13 @@ let userController = {
         let preguntaSeguridad = req.body.preguntaSeguridad;
         let respuestaSeguridad = req.body.respuestaSeguridad
         let fotoPerfil = req.body.fotoPerfil
+
+
 // Indico que campo del formulario le corresponde a cada columna de mi tabla Usuarios en la base de datos. 
 //(usando los nombres de las variable que creamos arriba)
 //(dentro del objeto literal usuarios)
+
+
         let usuarios = {
             username: username,
             password: password,
@@ -85,15 +89,25 @@ let userController = {
         }
 
 
+// busco en mi nbase de datos, en mi modelo de usurios, que busque por findOne, el cual
+// Este permite que busquemos resultados que coincidan con los atributos indicados en el objeto  literal que recibe el método
 
         db.usuarios.findOne(
             {
+
+                // usamos el atributo WHERE para filtrar datos, el cual recibe un objeto literal
                 where:
+        // pedimos que busque en la base de datos el mail, recuperando el dato del formulario que lleno el usuario
+    //En el request de la petición encontramos la propiedad  body ,un objeto literal que contendrá toda la información del formulario:
                    {email:  req.body.email}
                 
             })
+            
 
+        // el .then recibe una funcion llamada mailBuscado
             .then(function(mailBuscado){
+
+                // si el mailBuscado es distinto a null
                 if(mailBuscado != null){
                     res.send("Este mail ya esta registrado!")
                 }
@@ -105,7 +119,7 @@ let userController = {
                   
                     db.usuarios.create(usuarios)
                    
-                //create es un pedido asincrónico a la base de datos, por lo que nesecito un then
+                //create es un pedido asincrónico a la base de datos, por lo que necesito un .then
 
                  //este then dicta que va a pasar una vez que se realice el registro a la base de datos.
                 //en este caso le pedimos que redirija al usuario al login
@@ -149,33 +163,6 @@ detalleUsuario: function(req, res){
         })
 },
 
-// detalleUsuario: function(req,res){
-//     let id_posts = req.params.id
-//     db.posts.findByPk(id_posts)
-//     .then(function(post){
-//         res.render("detalleUsuario",{post: post})
-//     })
-
-// }, 
-    // detalleUsuario: function(req, res) {
-    //     db.usuarios.findAll({
-    //         where: {usuario_id : req.params.id
-    //                }, 
-            
-    //                include:[
-    //                 {association : "postsDelUsuario"},
-    //             ]
-            
-    //     })
-        
-    //     .then(function(detalleUsuarioPosts){
-      
-    //     res.render("detalleUsuario",{ detalleUsuarioPosts : detalleUsuarioPosts})
-    //     })
-    
-
-    // },
-
     login: function(req, res) {
         // Busco en la session para ver si hay alguien logueado
         // si en session hay cualquier usuario logueado, anda a la pagina de home
@@ -183,7 +170,7 @@ detalleUsuario: function(req, res){
             res.redirect ("home");
         }
  
-        // Si nadie está logueado, renderizo la página del login
+        // Si nadie está logueado, renderizo la página del login                                                                                                                    
         res.render("login", { usuarioLogueado: req.session.usuarioLogueado});
 
     },
@@ -198,14 +185,23 @@ detalleUsuario: function(req, res){
         
         //Si todavia no está logueado:
 
+
+        // recuperamos y guardamos en la variable el username del usuario
         let usuario = req.body.username
+
+
+// hacemos un pedido a la base de datos, a nuestro modelo de usuarios, le pedimos que busque por findOne
 
         db.usuarios.findOne(
             {
+
+                // usamos el atributo WHERE para filtrar datos, el cual recibe un objeto literal
                 where: [
                     { 
-
+//usamos el operador or, el cual filtra o por uno o por otro
                         [op.or]: [
+
+       // buscamos por username o por email, ambas estan guardadas en la misma variable
                             {username: usuario},    
                             {email: usuario }
                         ]
@@ -216,6 +212,8 @@ detalleUsuario: function(req, res){
               
             }
         )
+
+        // como todo pedido asincronico a la base de datos tenemos un .then
 
         .then(function(usuarios){
             

@@ -17,6 +17,8 @@
                         
                         <li><a href="/home">Home</a></li>
 
+
+                    <!-- Si hay un usuario Logueado mostrale estos hipervinculas  -->
                         <% if (usuarioLogueado != undefined) { %>
                            
                        
@@ -30,6 +32,7 @@
 
                             <p class="bienvenido">* Bienvenido! <%=usuarioLogueado.username %> *</p>
 
+                            <!-- si no esta logueado, le muestro -->
                         <% } else { %>
 
                             <li><a href="/registracion">Registración</a></li>
@@ -45,7 +48,7 @@
 
         <!-- recibe el atributo METHOD y aca le ponemos GET, ya que le pedimos informaicon a la base de datos -->
         <!--  En el ACTION le que cuando yo ponga enter en el form que pagina me tiene que cargar -->
-        <!-- en el NAME, si yo no pongo esto la informacion no viaja, esta diciendo en el campo ... el usuario puso tal cosa -->
+        
                             <form action= "/resultadoBusqueda/resultadoBusquedaPorPost" class="uk-search uk-search-default" method="GET">
                                 <span uk-search-icon></span>
                                 <input type="search" class="uk-search-input" placeholder="Buscar por #" name="buscador2">

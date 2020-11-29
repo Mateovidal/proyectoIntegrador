@@ -74,8 +74,9 @@ app.use(function(req,res,next){
 
     db.usuarios.findByPk(req.cookies.idDelUsuarioLogueado)
 
-
     // Luego como toda promesa, tengo un .then con una function que recibe a usuarios.
+
+
     .then(function(usuarios){
 
     // lo siguiente que hago es loguear al usuario, es decir, pongo en session todos los datos del usuario logueado

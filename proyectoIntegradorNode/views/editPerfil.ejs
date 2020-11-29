@@ -33,11 +33,20 @@
     <%- include("headerLogueado") %>
 
 
+
+
+        <!-- recibe el atributo METHOD y ponemos POST, ya que con este método queremos enviarle datos al servidor. -->
+        <!--  En el ACTION le pongo que pagina me tiene que cargar una vez que se envie el formulario -->
+
+        <!-- perfilAEditar.id traemos el id del perfil del usuario queremos editar, 
+        usamos el metodo POST ya que hay informacion sensible en el formulario -->
+
     <form action="/miPerfil/editPerfil/<%=perfilAEditar.id%>" method="POST">
     
 
         <h2>Edite su informacion</h2>
 
+        <!--  se genera segun el id del usuarioLogueado para saber que perfil editar -->
     <input type="hidden" name="id" value="<% usuarioLogueado.id %>">
 
         <div class="uk-margin">
