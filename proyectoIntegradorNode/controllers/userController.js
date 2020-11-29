@@ -89,30 +89,43 @@ let userController = {
         }
 
 
-// busco en mi nbase de datos, en mi modelo de usurios, que busque por findOne, el cual
-// Este permite que busquemos resultados que coincidan con los atributos indicados en el objeto  literal que recibe el método
+// Antes de guardar en todo la ifo de este nuevo usuario, quiero verificar si el email que registró no existía previamente en la base de datos
+//Para lograr verificar eso, busco dentro de la base de datos
+//Utilizo el método finOne, ya que quiero buscar solamente una cosa dentro de la base de datos
 
         db.usuarios.findOne(
             {
 
-                // usamos el atributo WHERE para filtrar datos, el cual recibe un objeto literal
-                where:
+     //dentro de la base de datos, dentro de la tabla de usuarios, quiero que busque el email que ingresó el usuario en registración
+
+
+     //utilizo req.body.emial, ya el formulario viaja por POST (al agregar info nueva a la db) y el campo que quiero es el del email
+
+                
+            where:
         // pedimos que busque en la base de datos el mail, recuperando el dato del formulario que lleno el usuario
     //En el request de la petición encontramos la propiedad  body ,un objeto literal que contendrá toda la información del formulario:
                    {email:  req.body.email}
                 
             })
             
+//como todo pedido a la base de datos, es asincrónico
+// por lo que usamos un .then para indicar que una vez que se complete el pedido, se ejecute lo que está dentro del then
 
-        // el .then recibe una funcion llamada mailBuscado
+//en este caso queremos que verifique si el mail que el usuario quiso registra ya existe
+//Si  existe, quiere decir que fue registrado por otro usuario previamente ( no es null)
             .then(function(mailBuscado){
 
                 // si el mailBuscado es distinto a null
                 if(mailBuscado != null){
+                    //si el email ya fue utilizado, queremos que mande un mensaje que le avise al usuario que ese mail no está disponible
                     res.send("Este mail ya esta registrado!")
                 }
-               
-                else {
+ 
+                //Si no existe, quiere decir que no fue registrado por otro usuario previamente ( es null)  
+  // si esto sucede, se ejecuta lo que está dentro del else           
+ 
+                 else {
                    //Para envíar la info a la base de datos:
                    // usamos el método create para generar un registro en la base de datos.
                    // create recibe a usuarios que es el objeto literal que contiene a todas las columnas de la tabla usuarios en la base de datos.
@@ -275,9 +288,11 @@ detalleUsuario: function(req, res){
     },
 
     editPerfil: function(req, res) {
-
+// primero recuperamos el id del usuario y lo guardamos dentro de esta variable "id_usuario"
         let id_usuario = req.params.id
 
+       //busca dentro de la base de datos, dentro de la tabla posts ME SUENA RARO QUE SEA EN LA TABLA POST
+       //busca por Pk usando la id que recuperamos 
         db.posts.findByPk(id_usuario)
         .then(function(perfilAEditar){
             res.render("editPerfil", { perfilAEditar : perfilAEditar})
