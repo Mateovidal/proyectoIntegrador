@@ -108,7 +108,7 @@ let userController = {
                    {email:  req.body.email}
                 
             })
-            
+
 //como todo pedido a la base de datos, es asincrónico
 // por lo que usamos un .then para indicar que una vez que se complete el pedido, se ejecute lo que está dentro del then
 
@@ -157,8 +157,12 @@ detalleUsuario: function(req, res){
        //busca por Pk usando la id que recuperamos 
     db.usuarios.findByPk(idUser, {
 
-           //incluye la relación entre la tabla de usuarios y la tabla de posts
+           // Uso el parametro include, el cual 
+           //recibe un array, permite decir información de otras tablas que yo quisiera mostrar
+
+            //incluye la relación entre la tabla de usuarios y la tabla de posts
            //sirve para saber que posts tiene este usuario
+
         include: [{ 
              //nombre de la relacion :
             association: 'postsDelUsuario' }]
@@ -239,7 +243,12 @@ detalleUsuario: function(req, res){
                 res.send("El usuario no existe")
 
             }
-            
+        // Usamos compareSync para comparar las contraseñas encriptadas. 
+        //Como primer parametro, recibimos lo que puso el usuario como contraseña, recuperando los datos del formulario con el req.body
+ 
+        // Como segundo parametro, recibimos la contraseña del usuario encriptada que ya esta guardada en la base de datos 
+ 
+
             var checkPassword = bcrypt.compareSync(req.body.password, usuarios.password); 
             if (checkPassword != true){
                 
@@ -342,9 +351,12 @@ detalleUsuario: function(req, res){
                 id : id_usuario
             }]
         })
-        
+    
+
 
         .then(function() {
+
+              // uso el emtodo clearCookie sobre el objeto response, el cula recibe el nombre de mi cookie que queiro borrar
             res.clearCookie("idDelUsuarioLogueado")
           //  req.session.usuarioLog = undefined;
             req.session.destroy();
@@ -355,9 +367,13 @@ detalleUsuario: function(req, res){
     },
 
     
-
+// creo el metodo logOut el cual recibe una funcion con req y res
     logout: function(req,res) {
+
+        // uso el emtodo clearCookie sobre el objeto response, el cula recibe el nombre de mi cookie que queiro borrar
         res.clearCookie("idDelUsuarioLogueado")
+
+        // utilizo el metodo destroy, el cual en este caso va a eliminar la session del usuario
         req.session.destroy();
         //req.session.usuarioLogueado = undefined;
 

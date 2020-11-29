@@ -45,10 +45,28 @@ module.exports = (sequelize,DataTypes) => {
         tableName:"usuarios",
         timestamps: false
     };
+
+
+
+// definimos la variable usuarios  atraves de sequelize define,m la cual recibe como primer parametro:
+//
     var usuarios = sequelize.define("usuarios", columnas, config);
+
+    // usuarios.associate es para exlicar como esta tabla se ascocia con otras tablas
+    // recibe del lado derecho una funcion, la cual recibe una variable models 
+
     usuarios.associate = function(models){
+
+// usamos la variable usuarios y usamos el metodo hasMany, el cual dice que usuarios tienen muchos posts
+// recibe dos parametros: la variable que definimos en la funcion (models) 
+// como segundo el nombre del modelo del cual yo quiero relacionar
         usuarios.hasMany(models.posts,{
+
+            // abro un objeto literal
+            // le aplicamos un nombre a esta relacion
             as: "postsDelUsuario",
+
+    // en foreign Key, aplico la columna que tiene el numero de usuario, es la columna por la cual se conecta la relacion
             foreignKey: "usuario_id"
         })
         // usuarios.hasMany(models.comentarios,{
