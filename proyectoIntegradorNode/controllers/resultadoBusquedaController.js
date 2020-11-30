@@ -121,6 +121,6 @@ let resultadoBusquedaController = {
     
 }
 
-// exportamos la variable
+// exportamos la info
    
 module.exports = resultadoBusquedaController;

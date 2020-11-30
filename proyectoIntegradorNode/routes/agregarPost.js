@@ -6,7 +6,7 @@ var postsController = require("../controllers/postsController.js")
 // EL PREFIJO PARA ESTA PAGINA ES "/AGREGARPOST"
 
 
-// localhost:3000/home/
+
 
 // Para que el usuario complete el formulario:
 router.get("/" , postsController.agregarPost);

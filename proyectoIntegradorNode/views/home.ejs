@@ -47,6 +47,15 @@
                         <article class="post uk-card-default uk-flex uk-flex-column">
                             <div class="info-usuario uk-flex ">
                                 <div>
+                                    <!-- 1) la foto de perfil del usuario que posteo la foto, va a funcionar como hipervinculo
+                                   
+                                         2) este hipervinculo redirige a el detalleUsuario correspondiente al usuario que posteo la foto
+                                
+                                         3) esto se verifica al utilizar la relación del dueño del post y especificar que dato quiero del usuario
+                                
+                                         4) en este caso es el ".id" del usuario dueño del post-->
+
+
                                     <a href="miPerfil/detalleUsuario/<%=posts[index].usuarioDelPost.id%>"><img src="<%= posts[index].usuarioDelPost.fotoPerfil %>" alt=""></a>
                                     
                                 </div>
@@ -55,6 +64,15 @@
                                 
                             </div>
                             <div class="post-body uk-flex uk-flex-center">
+                         
+                                <!--     1) la foto del post, va a funcionar como hipervinculo
+                                   
+                                         2) este hipervinculo redirige a el detallePost correspondiente al post que clickeaste
+
+                                         3) utiliza el id del post que clickeaste para luego especificar que detallePost debe aparecer
+                                
+                                         -->
+
                                 <a href="/detallePost/<%=posts[index].id%>"><img src="<%= posts[index].url %>" alt=""></a>
                                 
                             </div>
@@ -66,6 +84,7 @@
                                     </li>
                                 </ul>
                                 <div class="post-pie uk-flex">
+                                    
                                     <h5 class="uk-width-1-6"><%= posts[index].usuario_id %></h5>
                                     <br>
                                     <p class="uk-width-5-6"> <%= posts[index].texto_de_post %></p>

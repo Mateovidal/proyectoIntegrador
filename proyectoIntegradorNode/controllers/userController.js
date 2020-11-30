@@ -1,6 +1,13 @@
+//requerimos la base de datos
 let db = require("../database/models/index")
+
+
+//requerimos el paquete bcrypt
 let bcrypt = require("bcryptjs");
+
+//requerimos el paquete de los operadores del sequelize
 let op = db.Sequelize.Op;
+
 
 
 // Creo la variable userController 
@@ -19,9 +26,9 @@ let userController = {
 
           // Luego usamos un objeto literal con el atributo WHERE el cual es un método de búsqueda 
 
-          // el cual nos sirve para para filtrar los datosen nuestra base de datos
+          // el cual nos sirve para para filtrar los datose de nuestra base de datos que queremos encontrar
 
-            // dentro de este where le decimos que ?????
+            // en este caso le especificamos que queremos los posteos del usuario cuya id sea igual al id del usuario logueado.
         where: {usuario_id : req.session.usuarioLogueado.id
                },
         
@@ -38,6 +45,10 @@ let userController = {
     // y le compartimos a la vista la informacion dentro de una variable???? postPerfil, para luego en la vista poder usarla
 
     res.render("miPerfil",{
+
+        // dentro de el render también especifico la variable que le quiero compartir a la vista
+            //como es un OBJ LITERAL, debe llevar la estructura apropiada
+// por lo que lleva : {"elNombreDeLaPROPIEDAD" : con el valor que es el "Nombre De La Variable"  que contiene la infoqueremos compartir a la vista"}
         postsPerfil : postsPerfil
     })
     })
@@ -99,10 +110,7 @@ let userController = {
                    {email:  req.body.email}
                 
             })
-<<<<<<< HEAD
-=======
 
->>>>>>> 049798a451b6d3bf8b49bc4e6ee7d6dd9b544805
 //como todo pedido a la base de datos, es asincrónico
 // por lo que usamos un .then para indicar que una vez que se complete el pedido, se ejecute lo que está dentro del then
 
@@ -160,7 +168,11 @@ detalleUsuario: function(req, res){
             association: 'postsDelUsuario' }]
     })
         .then( function (post){
+        
             // después renderiza la vista del detalleUsuario correspondiente al usuario específico que queremos
+            // dentro de el render también especifico la variable que le quiero compartir a la vista
+            //como es un OBJ LITERAL, debe llevar la estructura apropiada
+// por lo que lleva : {"elNombreDeLaPROPIEDAD" : con el valor que es el "Nombre De La Variable"  que contiene la infoqueremos compartir a la vista"}
             return res.render('detalleUsuario', {post: post});
         })
         
@@ -372,17 +384,12 @@ detalleUsuario: function(req, res){
         },
         {
 
-<<<<<<< HEAD
-// el where especifica que perfil tiene que editar, el que tenga la id igual al usuario que está logueado
+// el atributo where especifica que perfil tiene que editar, el que tenga la id igual al usuario que está logueado
 //el id del usuario logueado está guardado dentro de la variable id_usuario 
-=======
-            
->>>>>>> 049798a451b6d3bf8b49bc4e6ee7d6dd9b544805
             where: [{
                 id : id_usuario
             }]
         })
-<<<<<<< HEAD
         
      
  // es un pedido a la base de datos, por lo que es asincrónico 
@@ -392,14 +399,6 @@ detalleUsuario: function(req, res){
             // una vez que se editen los datos en la base de datos:
             // usamos el método clearCookies, y le específicamos qué cookies queremos eliminar
             //en este caso son las cookies del usuario que estaba logueado
-=======
-    
-
-
-        .then(function() {
-
-              // uso el emtodo clearCookie sobre el objeto response, el cula recibe el nombre de mi cookie que queiro borrar
->>>>>>> 049798a451b6d3bf8b49bc4e6ee7d6dd9b544805
             res.clearCookie("idDelUsuarioLogueado")
           //  luego ejecutamos el método destroy para eliminar toda la información almacenada en la session
             req.session.destroy();
@@ -413,7 +412,6 @@ detalleUsuario: function(req, res){
     
 // creo el metodo logOut el cual recibe una funcion con req y res
     logout: function(req,res) {
-<<<<<<< HEAD
              // usamos el método clearCookies, y le específicamos qué cookies queremos eliminar
             //en este caso son las cookies del usuario que estaba logueado
        
@@ -424,16 +422,6 @@ detalleUsuario: function(req, res){
        
     //Una vez que se completa todo el proceso de logout:
     //queremos que nos redirija al home
-=======
-
-        // uso el emtodo clearCookie sobre el objeto response, el cula recibe el nombre de mi cookie que queiro borrar
-        res.clearCookie("idDelUsuarioLogueado")
-
-        // utilizo el metodo destroy, el cual en este caso va a eliminar la session del usuario
-        req.session.destroy();
-        //req.session.usuarioLogueado = undefined;
-
->>>>>>> 049798a451b6d3bf8b49bc4e6ee7d6dd9b544805
         return res.redirect("/home")
 
 
@@ -441,4 +429,6 @@ detalleUsuario: function(req, res){
 
 
 }
+
+//exportamos el controlador para poder tener acceso a la información que contiene desde otros lugares del código.
 module.exports = userController;
