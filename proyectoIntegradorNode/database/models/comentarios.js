@@ -1,4 +1,6 @@
 module.exports = (sequelize,DataTypes) => {
+
+   // creamos una variable en la cual vamos a declarar
     var columnas ={
         id: {type:DataTypes.INTEGER,
             autoIncrement: true,

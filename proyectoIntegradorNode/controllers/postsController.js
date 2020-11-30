@@ -1,23 +1,33 @@
-
 let db = require("../database/models");
 
+// creamos la variable postsController
 let postsController = {
+
+// creamos el metodo home que recibe una funcion con req y res
     home: function(req,res){
 
+        // le hacemos un pedido a la base de datos, a nuestro modelo de posts con un findAll
         db.posts.findAll(
     {
+
+    // usamos el atributo ORDER que recibe el un array
         order:[["fecha_creacion", "DESC"]],
         
+        // incluimos la relacion de que a un usuario le pertenece un POST
         include:[
             {association : "usuarioDelPost"},
         ]
 
     })
+// lugo como todo pedido asincronico (findAll) tenemos un .then
+// el cual recibe una funcion posts
 
         .then (function(posts){
 
         console.log(posts);   
     
+        // compartimos la variable para poder usarla en la vista
+        // el primer 
             res.render("home",{posts : posts}) 
         })
         
@@ -111,7 +121,7 @@ let postsController = {
         //verifica que el usuario logueado sea el dueño del post que quiere borrar, como medida de seguridad
         .then(function(post){
 
-            
+
             if (usuario_id != undefined && usuario_id == post.usuario_id) {
            
                 //si el usuario está logueado y además es el dueño del post
