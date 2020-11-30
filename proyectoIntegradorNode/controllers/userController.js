@@ -71,13 +71,9 @@ let userController = {
         let preguntaSeguridad = req.body.preguntaSeguridad;
         let respuestaSeguridad = req.body.respuestaSeguridad
         let fotoPerfil = req.body.fotoPerfil
-
-
 // Indico que campo del formulario le corresponde a cada columna de mi tabla Usuarios en la base de datos. 
 //(usando los nombres de las variable que creamos arriba)
 //(dentro del objeto literal usuarios)
-
-
         let usuarios = {
             username: username,
             password: password,
@@ -89,34 +85,26 @@ let userController = {
         }
 
 
-// Antes de guardar en todo la ifo de este nuevo usuario, quiero verificar si el email que registró no existía previamente en la base de datos
+// antes de guardar en todo la ifo de este nuevo usuario, quiero verificar si el email que registró no existía previamente en la base de datos
 //Para lograr verificar eso, busco dentro de la base de datos
+
 //Utilizo el método finOne, ya que quiero buscar solamente una cosa dentro de la base de datos
 
         db.usuarios.findOne(
             {
 
-     //dentro de la base de datos, dentro de la tabla de usuarios, quiero que busque el email que ingresó el usuario en registración
-
-
-     //utilizo req.body.emial, ya el formulario viaja por POST (al agregar info nueva a la db) y el campo que quiero es el del email
-
-                
-            where:
-        // pedimos que busque en la base de datos el mail, recuperando el dato del formulario que lleno el usuario
-    //En el request de la petición encontramos la propiedad  body ,un objeto literal que contendrá toda la información del formulario:
+                //dentro de la base de datos, dentro de la tabla de usuarios, quiero que busque el email que ingresó el usuario en registración
+                //utilizo req.body.emial, ya el formulario viaja por POST (al agregar info nueva a la db) y el campo que quiero es el del email
+                where:
                    {email:  req.body.email}
                 
             })
-            
 //como todo pedido a la base de datos, es asincrónico
 // por lo que usamos un .then para indicar que una vez que se complete el pedido, se ejecute lo que está dentro del then
 
 //en este caso queremos que verifique si el mail que el usuario quiso registra ya existe
 //Si  existe, quiere decir que fue registrado por otro usuario previamente ( no es null)
             .then(function(mailBuscado){
-
-                // si el mailBuscado es distinto a null
                 if(mailBuscado != null){
                     //si el email ya fue utilizado, queremos que mande un mensaje que le avise al usuario que ese mail no está disponible
                     res.send("Este mail ya esta registrado!")
@@ -132,7 +120,7 @@ let userController = {
                   
                     db.usuarios.create(usuarios)
                    
-                //create es un pedido asincrónico a la base de datos, por lo que necesito un .then
+                //create es un pedido asincrónico a la base de datos, por lo que nesecito un then
 
                  //este then dicta que va a pasar una vez que se realice el registro a la base de datos.
                 //en este caso le pedimos que redirija al usuario al login
@@ -176,6 +164,33 @@ detalleUsuario: function(req, res){
         })
 },
 
+// detalleUsuario: function(req,res){
+//     let id_posts = req.params.id
+//     db.posts.findByPk(id_posts)
+//     .then(function(post){
+//         res.render("detalleUsuario",{post: post})
+//     })
+
+// }, 
+    // detalleUsuario: function(req, res) {
+    //     db.usuarios.findAll({
+    //         where: {usuario_id : req.params.id
+    //                }, 
+            
+    //                include:[
+    //                 {association : "postsDelUsuario"},
+    //             ]
+            
+    //     })
+        
+    //     .then(function(detalleUsuarioPosts){
+      
+    //     res.render("detalleUsuario",{ detalleUsuarioPosts : detalleUsuarioPosts})
+    //     })
+    
+
+    // },
+
     login: function(req, res) {
         // Busco en la session para ver si hay alguien logueado
         // si en session hay cualquier usuario logueado, anda a la pagina de home
@@ -183,7 +198,7 @@ detalleUsuario: function(req, res){
             res.redirect ("home");
         }
  
-        // Si nadie está logueado, renderizo la página del login                                                                                                                    
+        // Si nadie está logueado, renderizo la página del login
         res.render("login", { usuarioLogueado: req.session.usuarioLogueado});
 
     },
@@ -197,24 +212,19 @@ detalleUsuario: function(req, res){
         }
         
         //Si todavia no está logueado:
+        
+        //recupero el username enviado por el usuario en el formulario de login
+        //viaja por post, por eso lleva body
+        //y el campo dentro del formulario de login que contiene el usuario es el de "username"
 
-
-        // recuperamos y guardamos en la variable el username del usuario
         let usuario = req.body.username
-
-
-// hacemos un pedido a la base de datos, a nuestro modelo de usuarios, le pedimos que busque por findOne
 
         db.usuarios.findOne(
             {
-
-                // usamos el atributo WHERE para filtrar datos, el cual recibe un objeto literal
                 where: [
                     { 
-//usamos el operador or, el cual filtra o por uno o por otro
-                        [op.or]: [
 
-       // buscamos por username o por email, ambas estan guardadas en la misma variable
+                        [op.or]: [
                             {username: usuario},    
                             {email: usuario }
                         ]
@@ -225,8 +235,6 @@ detalleUsuario: function(req, res){
               
             }
         )
-
-        // como todo pedido asincronico a la base de datos tenemos un .then
 
         .then(function(usuarios){
             
@@ -303,9 +311,18 @@ detalleUsuario: function(req, res){
     },
 
     storeEditPerfil: function(req, res) {
+ // la id del usuario lo vamos a recuperar de la session
+ let id_usuario = req.session.usuarioLogueado.id;
+ 
+ 
+ // Creo variables con nombres específicos, para cada dato que me manda el usuario al completar el formulario de editPerfil.
 
-        let id_usuario = req.session.usuarioLogueado.id;
+ // el username, email, fecha de nacimiento, la pregunta y respuesta de seguridad, y la foto de perfil 
+        //serán recuperados del formulario de edit perfil que viaja por post.
         let username = req.body.username;
+        //ejecutamos el metodo hashSync, dentro del paquete de bcrypt
+        //el hashSync nos permite encriptar el contenido de este campo del form (password), 
+        //y el "10" hace referencia al tipo de encriptación
         let password = bcrypt.hashSync(req.body.password, 10);
         let email = req.body.email;
         let fechaNacimiento = req.body.fechaNacimiento;
@@ -313,7 +330,9 @@ detalleUsuario: function(req, res){
         let respuestaSeguridad = req.body.respuestaSeguridad
         let fotoPerfil = req.body.fotoPerfil
 
-
+//Creo un objeto literal con el mismo nombre del modelo dentro del cual quiero operar
+//dentro de usuarios, nombro cada columna de este modelo y la variable que le corresponde 
+//(cada variable hace referencia a un campo del form, y están declaradas arriba)
         let usuarios = {
             username: username,
             password: password,
@@ -325,8 +344,11 @@ detalleUsuario: function(req, res){
         };
 
         
-
+// luego, ejecutamos el método update, para la tabla de usuarios en nuestra base de datos
+// update nos permite editar ciertos datos que corresponden a ciertas columnas en la tabla elegida, dentro de la base de datos
+           
         db.usuarios.update({
+             //indicamos que columna de la tabla modificar y qué valor asignarle:
             username : usuarios.username,
             password: usuarios.password,
             email: usuarios.email,
@@ -337,18 +359,26 @@ detalleUsuario: function(req, res){
         },
         {
 
-
+// el where especifica que perfil tiene que editar, el que tenga la id igual al usuario que está logueado
+//el id del usuario logueado está guardado dentro de la variable id_usuario 
             where: [{
                 id : id_usuario
             }]
         })
         
+     
+ // es un pedido a la base de datos, por lo que es asincrónico 
+ // por este motivo usamos un then\
 
         .then(function() {
+            // una vez que se editen los datos en la base de datos:
+            // usamos el método clearCookies, y le específicamos qué cookies queremos eliminar
+            //en este caso son las cookies del usuario que estaba logueado
             res.clearCookie("idDelUsuarioLogueado")
-          //  req.session.usuarioLog = undefined;
+          //  luego ejecutamos el método destroy para eliminar toda la información almacenada en la session
             req.session.destroy();
-    
+    //Una vez que se completa todo el proceso de edición de perfil:
+    //queremos que nos redirija al login para volver a loguear el usuario
       return      res.redirect("/login")
             })
 
@@ -357,10 +387,16 @@ detalleUsuario: function(req, res){
     
 
     logout: function(req,res) {
-        res.clearCookie("idDelUsuarioLogueado")
-        req.session.destroy();
-        //req.session.usuarioLogueado = undefined;
-
+             // usamos el método clearCookies, y le específicamos qué cookies queremos eliminar
+            //en este caso son las cookies del usuario que estaba logueado
+       
+            res.clearCookie("idDelUsuarioLogueado")
+           
+            //  luego ejecutamos el método destroy para eliminar toda la información almacenada en la session
+           req.session.destroy();
+       
+    //Una vez que se completa todo el proceso de logout:
+    //queremos que nos redirija al home
         return res.redirect("/home")
 
 
