@@ -110,8 +110,13 @@ let userController = {
                    {email:  req.body.email}
                 
             })
+<<<<<<< HEAD
 
 //como todo pedido a la base de datos, es asincrónico
+=======
+            
+            //como todo pedido a la base de datos, es asincrónico
+>>>>>>> e809adbf1c4bf93f89c49b2674138648b1c2b207
 // por lo que usamos un .then para indicar que una vez que se complete el pedido, se ejecute lo que está dentro del then
 
 //en este caso queremos que verifique si el mail que el usuario quiso registra ya existe
@@ -384,7 +389,11 @@ detalleUsuario: function(req, res){
         },
         {
 
+<<<<<<< HEAD
 // el atributo where especifica que perfil tiene que editar, el que tenga la id igual al usuario que está logueado
+=======
+// el where especifica que perfil tiene que editar, el que tenga la id igual al usuario que está logueado
+>>>>>>> e809adbf1c4bf93f89c49b2674138648b1c2b207
 //el id del usuario logueado está guardado dentro de la variable id_usuario 
             where: [{
                 id : id_usuario

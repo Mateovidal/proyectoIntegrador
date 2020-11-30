@@ -13,6 +13,7 @@ let postsController = {
     // usamos el atributo ORDER que recibe el un array
         order:[["fecha_creacion", "DESC"]],
         
+        // Include es un parámetro que recibe un array, permite decir información de otras tablas que yo quisiera mostrar
         // incluimos la relacion de que a un usuario le pertenece un POST
         include:[
             {association : "usuarioDelPost"},
