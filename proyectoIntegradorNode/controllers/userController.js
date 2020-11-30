@@ -346,7 +346,7 @@ detalleUsuario: function(req, res){
         },
         {
 
-
+            
             where: [{
                 id : id_usuario
             }]
