@@ -99,11 +99,8 @@ let userController = {
                    {email:  req.body.email}
                 
             })
-<<<<<<< HEAD
-=======
-
->>>>>>> 049798a451b6d3bf8b49bc4e6ee7d6dd9b544805
-//como todo pedido a la base de datos, es asincrónico
+            
+            //como todo pedido a la base de datos, es asincrónico
 // por lo que usamos un .then para indicar que una vez que se complete el pedido, se ejecute lo que está dentro del then
 
 //en este caso queremos que verifique si el mail que el usuario quiso registra ya existe
@@ -372,17 +369,12 @@ detalleUsuario: function(req, res){
         },
         {
 
-<<<<<<< HEAD
 // el where especifica que perfil tiene que editar, el que tenga la id igual al usuario que está logueado
 //el id del usuario logueado está guardado dentro de la variable id_usuario 
-=======
-            
->>>>>>> 049798a451b6d3bf8b49bc4e6ee7d6dd9b544805
             where: [{
                 id : id_usuario
             }]
         })
-<<<<<<< HEAD
         
      
  // es un pedido a la base de datos, por lo que es asincrónico 
@@ -392,14 +384,6 @@ detalleUsuario: function(req, res){
             // una vez que se editen los datos en la base de datos:
             // usamos el método clearCookies, y le específicamos qué cookies queremos eliminar
             //en este caso son las cookies del usuario que estaba logueado
-=======
-    
-
-
-        .then(function() {
-
-              // uso el emtodo clearCookie sobre el objeto response, el cula recibe el nombre de mi cookie que queiro borrar
->>>>>>> 049798a451b6d3bf8b49bc4e6ee7d6dd9b544805
             res.clearCookie("idDelUsuarioLogueado")
           //  luego ejecutamos el método destroy para eliminar toda la información almacenada en la session
             req.session.destroy();
@@ -413,7 +397,6 @@ detalleUsuario: function(req, res){
     
 // creo el metodo logOut el cual recibe una funcion con req y res
     logout: function(req,res) {
-<<<<<<< HEAD
              // usamos el método clearCookies, y le específicamos qué cookies queremos eliminar
             //en este caso son las cookies del usuario que estaba logueado
        
@@ -424,16 +407,6 @@ detalleUsuario: function(req, res){
        
     //Una vez que se completa todo el proceso de logout:
     //queremos que nos redirija al home
-=======
-
-        // uso el emtodo clearCookie sobre el objeto response, el cula recibe el nombre de mi cookie que queiro borrar
-        res.clearCookie("idDelUsuarioLogueado")
-
-        // utilizo el metodo destroy, el cual en este caso va a eliminar la session del usuario
-        req.session.destroy();
-        //req.session.usuarioLogueado = undefined;
-
->>>>>>> 049798a451b6d3bf8b49bc4e6ee7d6dd9b544805
         return res.redirect("/home")
 
 

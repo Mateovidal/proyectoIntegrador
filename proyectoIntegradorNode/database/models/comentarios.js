@@ -20,7 +20,9 @@ module.exports = (sequelize,DataTypes) => {
         },
     };
     var config ={
+        // el nombre de la tabla
         tableName:"comentarios",
+        // determina el tiempo en el que se genero un bloque
         timestamps: false
     }; 
     var comentarios = sequelize.define("comentarios",columnas,config);
